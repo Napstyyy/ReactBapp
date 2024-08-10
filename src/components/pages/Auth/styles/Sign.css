@@ -1,0 +1,177 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.sign-in-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5%;
+  font-family: 'Poppins', sans-serif;
+  color: #3a3a3a;
+  background-image: url("../../../../assets/images/Auth/Background.png");
+  background-size: contain;
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  max-height: 100vh; /* Asegura que el contenedor cubra toda la altura de la pantalla */
+}
+
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  margin-top: 8%;
+  padding-bottom: 14%;
+}
+
+.back-button {
+  position: absolute;
+  left: 1%; /* Adjusted to be a percentage from the left */
+  background: none;
+  border: 0.15rem solid #E9F1FF; /* 2px converted to rem */
+  border-radius: 50%;
+  width: 10vw; /* Width based on viewport width */
+  height: 10vw; /* Height based on viewport width */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 80%; /* Font size in percentage relative to parent */
+}
+
+h2 {
+  margin: 0;
+  font-size: 1.16rem;  /* Approx. 16px in rem */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 1.125rem;  /* 18px converted to rem */
+  color: #002055;
+  text-align: left;
+}
+
+h1 {
+  font-size: 1.625rem; /* 26px converted to rem */
+  font-weight: bold;
+  margin: 5% 0 2.5%; /* Converted to percentages */
+  text-align: left; /* Aligns text to the left */
+  width: 100%; /* Ensures it takes full width if needed */
+}
+
+
+p {
+  margin: 1.25% 0; /* Converted to percentage */
+  color: #868D95;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 100;
+}
+
+.role-selector {
+  display: flex;
+  width: 100%;
+  margin: 5% 0;
+  position: relative;
+  border-radius: 2rem; /* Rounded corners */
+  background-color: #f3f3f3; /* Default gray background */
+  overflow: hidden;
+}
+
+.role-button {
+  flex: 1;
+  padding: 2.5% 0;
+  font-size: 0.875rem; /* 14px */
+  border: none;
+  background-color: transparent;
+  color: #7a7a7a;
+  cursor: pointer;
+  z-index: 1;
+  text-align: center;
+  transition: color 0.3s ease; /* Smooth transition for text color */
+}
+
+.role-button.active {
+  color: white;
+}
+
+.switch-background {
+  position: absolute;
+  top: 0;
+  width: 50%; /* Takes half of the switch's width */
+  height: 100%;
+  background-color: #7163f1; /* Blue background */
+  border-radius: 2rem;
+  transition: left 0.3s ease; /* Smooth transition for sliding */
+  z-index: 0;
+}
+
+.switch-background.manager {
+  left: 0; /* Position background on the left */
+}
+
+.switch-background.contractor {
+  left: 50%; /* Position background on the right */
+}
+
+
+
+
+
+.input-field {
+  width: 100%;
+  padding: 2.5%; /* Reduced padding to make the field a bit shorter */
+  margin: 1.5% 0; /* Reduced margin to fit within the container's padding */
+  border-radius: 0.625rem; /* 10px converted to rem */
+  border: 0.15rem solid #e0e0e0; /* 2px converted to rem */
+  font-size: 0.875rem; /* 14px converted to rem */
+}
+
+
+.forgot-password {
+  align-self: flex-end;
+  color: #7a7a7a;
+  margin-top: 2.5%; /* Converted to percentage */
+  margin-bottom: 5%; /* Converted to percentage */
+  font-size: 0.75rem; /* 12px converted to rem */
+}
+
+.sign-in-button {
+  width: 100%;
+  padding: 3.75%; /* 15px converted to percentage */
+  background-color: #7163f1;
+  border: none;
+  border-radius: 2rem; /* 30px converted to rem */
+  color: white;
+  font-size: 1rem; /* 16px converted to rem */
+  cursor: pointer;
+}
+
+.continue-with {
+  text-align: center;
+  margin: 7.5% 0; /* Converted to percentage */
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 5%; /* Converted to percentage */
+}
+
+.apple-login,
+.google-login {
+  padding: 2.5%; /* Converted to percentage */
+  background-color: #f3f3f3;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem; /* 24px converted to rem */
+  cursor: pointer;
+}
+
+.sign-up-text {
+  font-size: 0.875rem; /* 14px converted to rem */
+  color: #7a7a7a;
+}

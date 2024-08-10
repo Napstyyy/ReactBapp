@@ -1,0 +1,21 @@
+/* CurvedButton.css */
+.curved-button {
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+  width: 50%; /* Ajusta este valor para cambiar el tamaño del botón */
+  height: auto; /* Mantiene la proporción de la imagen */
+  transition: transform 0.1s ease-in-out;
+}
+
+.curved-button img {
+  width: 100%; /* Hace que la imagen se ajuste al tamaño del botón */
+  height: auto; /* Mantiene la proporción de la imagen */
+  display: block;
+}
+
+.curved-button:active {
+  transform: scale(0.95);
+}

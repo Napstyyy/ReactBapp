@@ -8,6 +8,10 @@ import { FaApple } from "react-icons/fa";
 const SignUpView = () => {
       const navigate = useNavigate(); // Hook para redirigir
 
+  const handleButtonClick = () => {
+    navigate("/Home"); // Cambia "/new-page" por la ruta a la que deseas navegar
+  };
+  
   const handleBackButtonClick = () => {
     navigate(-1); // Redirige a la página anterior
   };
@@ -25,7 +29,7 @@ const SignUpView = () => {
       <input type="name" placeholder="Enter your full name" className="input-field" />
       <input type="email" placeholder="Enter your Email" className="input-field" />
       <input type="password" placeholder="Enter your password" className="input-field" />
-      <button className="sign-in-button">Sign In</button>
+      <button className="sign-in-button" onClick={handleButtonClick}>Sign Up</button>
       <div className="continue-with">
         <p>Continue with</p>
         <div className="social-buttons">

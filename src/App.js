@@ -7,6 +7,7 @@ import Welcome2View from './components/pages/Welcome/Welcome2.js';
 import Welcome3View from './components/pages/Welcome/Welcome3.js';
 import SignInView from './components/pages/Auth/SignIn/SignIn.js';
 import SignUpView from './components/pages/Auth/SignUp/SignUp.js';
+import HomeView from './components/pages/Home/Home.js';
 //import OtherComponent from './OtherComponent'; // Otros componentes si los tienes
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/Welcome3" element={<Welcome3View />} />
         <Route path="/SignIn" element={<SignInView />} />
         <Route path="/SignUp" element={<SignUpView />} />
+        <Route path="/Home" element={<HomeView />} />
       </Routes>
     </Router>
   );

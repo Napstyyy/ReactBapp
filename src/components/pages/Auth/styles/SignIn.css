@@ -61,6 +61,7 @@ h1 {
   margin: 5% 0 2.5%; /* Converted to percentages */
   text-align: left; /* Aligns text to the left */
   width: 100%; /* Ensures it takes full width if needed */
+  padding-top: 8%;
 }
 
 
@@ -122,21 +123,35 @@ p {
 
 
 .input-field {
-  width: 100%;
-  padding: 2.5%; /* Reduced padding to make the field a bit shorter */
-  margin: 1.5% 0; /* Reduced margin to fit within the container's padding */
-  border-radius: 0.625rem; /* 10px converted to rem */
-  border: 0.15rem solid #e0e0e0; /* 2px converted to rem */
-  font-size: 0.875rem; /* 14px converted to rem */
+  width: 90%; /* Ajusta el ancho para que no exceda el contenedor */
+  padding: 3.5%; /* Incrementa el padding para hacer los campos más largos */
+  margin: 1.5% auto; /* Centra los campos horizontalmente */
+  height: 24px; /* Aumenta el alto del campo */
+  border-radius: 0.850rem; /* Mantiene el borde redondeado */
+  border: 0.15rem solid #e0e0e0; /* Mantiene el borde */
+  font-size: 0.875rem; /* Mantiene el tamaño de fuente */
+  font-family: 'Poppins', sans-serif; /* Aplica la fuente 'Poppins' */
+  display: block; /* Asegura que cada campo esté en una nueva línea */
 }
 
+.input-field:focus {
+  border-color: #7163f1; /* Color azul para el borde en foco */
+  outline: none; /* Elimina el borde de enfoque predeterminado del navegador */
+}
+
+.input-field::placeholder {
+  color: #b0b0b0; /* Color gris claro para el texto del placeholder */
+  opacity: 1; /* Asegura que el color sea completamente opaco */
+  font-family: 'Poppins', sans-serif; /* Asegura que el font-family sea el mismo */
+}
 
 .forgot-password {
   align-self: flex-end;
-  color: #7a7a7a;
+  color: #7163f1;
   margin-top: 2.5%; /* Converted to percentage */
-  margin-bottom: 5%; /* Converted to percentage */
+  margin-bottom: 8%; /* Converted to percentage */
   font-size: 0.75rem; /* 12px converted to rem */
+  text-decoration: none;
 }
 
 .sign-in-button {
@@ -144,34 +159,48 @@ p {
   padding: 3.75%; /* 15px converted to percentage */
   background-color: #7163f1;
   border: none;
-  border-radius: 2rem; /* 30px converted to rem */
+  border-radius: 1rem; /* 30px converted to rem */
   color: white;
   font-size: 1rem; /* 16px converted to rem */
   cursor: pointer;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
 }
 
 .continue-with {
   text-align: center;
-  margin: 7.5% 0; /* Converted to percentage */
+  margin: 16%;
 }
 
 .social-buttons {
   display: flex;
   justify-content: center;
-  gap: 5%; /* Converted to percentage */
+  gap: 32%; /* Converted to percentage */
+  margin-top: 32%;
 }
 
 .apple-login,
 .google-login {
-  padding: 2.5%; /* Converted to percentage */
-  background-color: #f3f3f3;
-  border: none;
-  border-radius: 50%;
-  font-size: 1.5rem; /* 24px converted to rem */
+  width: 50%; /* Define un tamaño fijo para hacer el botón cuadrado */
+  height: auto; /* Hace que la altura sea igual al ancho */
+  padding: 10%; /* Define un padding intermedio */
+  background-color: #ffffff;
+  border: 1px solid #dfdfdf; /* Añade un borde azul */
+  border-radius: 0.625rem; /* Mantiene los bordes ligeramente redondeados */
+  font-size: 1.8rem; /* Tamaño de fuente para el icono */
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 
 .sign-up-text {
   font-size: 0.875rem; /* 14px converted to rem */
   color: #7a7a7a;
+  
+}
+
+.sign-up-text a{
+    text-decoration: none; /* Elimina la línea subrayada */
+    font-weight: 600;
 }

@@ -1,0 +1,72 @@
+/* En styles/SignUp.css */
+
+.sign-up-wrapper {
+  /* Estilos específicos para la vista de Sign Up */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5%;
+  font-family: 'Poppins', sans-serif;
+  color: #3a3a3a;
+  background-color: #f9f9f9; /* Cambia el color de fondo */
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  margin-top: 8%;
+  padding-bottom: 14%;
+}
+
+.info-paragraph {
+  padding-bottom: 20px; /* Espacio adicional en la parte inferior del párrafo */
+  font-family: 'Poppins', sans-serif; /* Asegura que use la misma fuente */
+  color: #868D95; /* Color del texto */
+  font-weight: 100; /* Peso de la fuente */
+}
+
+
+.sign-up-button {
+  width: 100%;
+  padding: 3.75%;
+  background-color: #7163f1; /* Color diferente si deseas */
+  border: none;
+  border-radius: 2rem;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4); /* Sombra pronunciada */
+}
+
+.sign-up-text a {
+  text-decoration: none; /* Elimina la línea subrayada */
+  color: #7163f1; /* Color del enlace */
+}
+
+.input-field {
+  width: 90%; /* Ajusta el ancho para que no exceda el contenedor */
+  padding: 3.5%; /* Incrementa el padding para hacer los campos más largos */
+  margin: 1.5% auto; /* Centra los campos horizontalmente */
+  margin-bottom: 8%;
+  height: 24px; /* Aumenta el alto del campo */
+  border-radius: 0.850rem; /* Mantiene el borde redondeado */
+  border: 0.15rem solid #e0e0e0; /* Mantiene el borde */
+  font-size: 0.875rem; /* Mantiene el tamaño de fuente */
+  font-family: 'Poppins', sans-serif; /* Aplica la fuente 'Poppins' */
+  display: block; /* Asegura que cada campo esté en una nueva línea */
+}
+
+.input-field:focus {
+  border-color: #7163f1; /* Color azul para el borde en foco */
+  outline: none; /* Elimina el borde de enfoque predeterminado del navegador */
+}
+
+.input-field::placeholder {
+  color: #b0b0b0; /* Color gris claro para el texto del placeholder */
+  opacity: 1; /* Asegura que el color sea completamente opaco */
+  font-family: 'Poppins', sans-serif; /* Asegura que el font-family sea el mismo */
+}
+

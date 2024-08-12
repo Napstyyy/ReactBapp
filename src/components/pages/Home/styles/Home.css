@@ -1,3 +1,13 @@
+.Home {
+  background-image: url('../../../../assets/images/Auth/Background.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh; /* Ensure the background covers the entire view */
+  height: auto;
+  overflow: hidden;
+}
+
+
 .dashboard {
   padding: 20px;
   font-family: "Poppins", sans-serif;
@@ -64,7 +74,7 @@ header h2 {
 
 .greeting {
   margin: 0;
-  font-size: 1.32rem;  /* Approx. 16px in rem */
+  font-size: 1.48rem;  /* Approx. 16px in rem */
   font-family: 'Poppins', sans-serif;
   font-weight: 800;
   line-height: 1.125rem;  /* 18px converted to rem */
@@ -73,20 +83,65 @@ header h2 {
   padding-bottom: 16%;
 }
 
+
+.carousel-container {
+  position: relative;
+  z-index: 1000;
+  width: 100vw; /* Asegura que el contenedor ocupe el 100% del ancho de la pantalla */
+  left: 50%; /* Asegura que el contenedor esté centrado */
+  transform: translateX(-50%); /* Ajusta el contenedor para que esté centrado en la pantalla */
+  margin: 0; /* Elimina cualquier margen adicional */
+  padding-left: 16%;
+}
+
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  width: 100%;
+  scroll-behavior: smooth;
+}
+
 .participated-project {
+  flex: 0 0 65%;
+  scroll-snap-align: start;
+  margin-right: -20%;
   background-color: #726ef7;
   padding: 8%;
   border-radius: 24px;
   color: white;
-  margin-top: 20px;
   text-align: center;
   position: relative;
+  z-index: 1002;
+  box-sizing: border-box; /* Asegura que el padding y border no afecten el ancho del elemento */
+}
+
+
+.participated-project + .participated-project {
+  margin-left: 25%; /* Offset para que la segunda tarjeta se muestre parcialmente */
+  background-color: white; /* Fondo blanco para la segunda tarjeta */
+  border: 2px solid #E9F1FF; /* Agrega un borde similar al contenedor */
+}
+
+.participated-project-1 {
+  background-color: white; /* Aplica fondo blanco si es necesario */
+  border: 2px solid #E9F1FF; /* Agrega borde si es necesario */
+}
+
+.participated-project-1 h2 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #002055 !important;
+  padding-bottom: 2%;
 }
 
 .participated-project h2 {
   font-size: 18px;
   font-weight: 500;
   color: #ffffff;
+  padding-bottom: 2%;
 }
 
 .participated-project p {
@@ -102,6 +157,12 @@ header h2 {
   margin-top: 8%;
 }
 
+.project-details-1 {
+  display: flex;
+  align-items: center;
+  margin-top: 16%;
+}
+
 .project-images {
   display: flex;
   margin-right: 10px;
@@ -109,8 +170,8 @@ header h2 {
 }
 
 .project-image {
-  width: 58%;
-  height: 58%;
+  width: 40%;
+  height: 40%;
   border-radius: 50%;
   border: 2px solid #fff;
   object-fit: cover;
@@ -131,7 +192,7 @@ header h2 {
 .view-projects {
   background-color: transparent;
   color: white;
-  padding: 10px 20px;
+  padding: 4% 2% 4% 4%;
   border: 0px solid white;
   border-radius: 5px;
   font-weight: 400;
@@ -141,34 +202,58 @@ header h2 {
 
 
 .all-projects {
-  margin-top: 20px;
+  margin-top: 8%;
 }
 
 .all-projects h2 {
-  font-size: 18px;
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ajusta el espaciado de los elementos dentro del h2 */
 }
 
+.all-projects-icon {
+  margin-left: auto; /* Empuja el ícono hacia la derecha */
+  display: inline-flex; /* Asegura que se mantenga en línea con el texto */
+  align-items: center;
+  font-size: 24px; /* Ajusta el tamaño del ícono según sea necesario */
+  color: #756EF3;
+}
+
+
 .project-card {
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   padding: 15px;
   border-radius: 10px;
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: white;
+  margin-top: 6%;
+  position: relative;
+  border: 2px solid #E9F1FF; /* Add border to project-card */
+}
+
+
+.project-card p {
+  margin: 0;
+  margin-bottom: 0.5%; /* Space between rows */
+  color: #848A94;
+  font-weight: 100;
+  font-size: 13px;
 }
 
 .project-card h3 {
+  margin: 0;
+  margin-bottom: 0.5%; /* Space between rows */
+  color: #002055;
   font-size: 16px;
-  font-weight: 500;
 }
 
-.project-card p {
-  font-size: 14px;
-}
-
-.project-card img {
-  width: 20px;
-  height: 20px;
+.project-card img,
+.project-card svg {
+  position: absolute;
+  right: 6%;
+  top: 50%;
+  width: 8%;
+  height: auto;
+  transform: translateY(-50%);
 }

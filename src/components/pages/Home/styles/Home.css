@@ -84,40 +84,31 @@ header h2 {
 }
 
 
-.carousel-container {
-  position: relative;
-  z-index: 1000;
-  width: 100vw; /* Asegura que el contenedor ocupe el 100% del ancho de la pantalla */
-  left: 50%; /* Asegura que el contenedor esté centrado */
-  transform: translateX(-50%); /* Ajusta el contenedor para que esté centrado en la pantalla */
-  margin: 0; /* Elimina cualquier margen adicional */
-  padding-left: 16%;
-}
 
 .carousel {
   display: flex;
-  overflow-x: auto;
+  overflow-x: auto; /* Permite que las tarjetas se superpongan fuera del contenedor */
   scroll-snap-type: x mandatory;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  width: 100%;
+  padding-top: 4%;
+  position: relative; /* Asegura que el contenedor sea el punto de referencia para la posición absoluta */
   scroll-behavior: smooth;
+
 }
 
 .participated-project {
-  flex: 0 0 65%;
+  flex: 0 0 65%; /* Hace que la primera tarjeta ocupe el 65% del contenedor */
   scroll-snap-align: start;
-  margin-right: -20%;
+  margin-right: -20%; /* Superpone la segunda tarjeta por un 20% */
   background-color: #726ef7;
   padding: 8%;
   border-radius: 24px;
   color: white;
   text-align: center;
   position: relative;
-  z-index: 1002;
-  box-sizing: border-box; /* Asegura que el padding y border no afecten el ancho del elemento */
+  z-index: 1; /* Asegura que la tarjeta esté por encima del contenedor */
 }
-
 
 .participated-project + .participated-project {
   margin-left: 25%; /* Offset para que la segunda tarjeta se muestre parcialmente */

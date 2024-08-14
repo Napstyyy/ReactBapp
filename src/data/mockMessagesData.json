@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "sender": "Hashim",
+    "time": "Wed 8:21 AM",
+    "message": "Hello, I’m Hashim! 👋 – please ask me if you have any questions here.",
+    "type": "text"
+  },
+  {
+    "id": 2,
+    "sender": "user",
+    "time": "Wed 8:23 AM",
+    "message": "What is your budget?",
+    "type": "text"
+  },
+  {
+    "id": 3,
+    "sender": "user",
+    "time": "Wed 8:24 AM",
+    "message": "Do you have existing quotation ready?",
+    "type": "text"
+  },
+  {
+    "id": 4,
+    "sender": "Hashim",
+    "time": "Wed 8:25 AM",
+    "message": "Can you share more pictures?",
+    "type": "text"
+  },
+  {
+    "id": 5,
+    "sender": "user",
+    "time": "Wed 8:26 AM",
+    "message": "https://example.com/image.jpg",
+    "type": "image"
+  }
+]

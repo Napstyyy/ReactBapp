@@ -1,0 +1,75 @@
+/* Centrar la imagen roundedLogo */
+.rounded-logo {
+  display: block;
+  margin: 12% auto 0 auto; /* Centra la imagen y agrega margen inferior */
+  width: 30%; /* Ajusta el tamaño de la imagen según sea necesario */
+  height: Auto; /* Ajusta el tamaño de la imagen según sea necesario */
+}
+
+/* Estilos para centrar h1 e idInfo */
+h1 {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  margin-top: 4px;
+  margin-bottom: 1px;
+}
+
+.idInfo {
+  text-align: center; /* Centrar horizontalmente */
+  padding-bottom: 2px;
+  font-family: 'Poppins', sans-serif;
+  color: #868D95;
+  font-weight: 100;
+  margin-top: 1px;
+}
+
+/* Estilo de los input fields */
+.input-field {
+  width: 90%;
+  padding: 3.5%;
+  margin: 1.5% auto;
+  margin-bottom: 8%;
+  height: 24px;
+  border-radius: 0.850rem;
+  border: 0.15rem solid #e0e0e0;
+  font-size: 0.875rem;
+  font-family: 'Poppins', sans-serif;
+  color: #b0b0b0; /* Color gris claro cuando no está enfocado */
+  display: block;
+}
+
+.input-field:focus {
+  border-color: #7163f1;
+  outline: none;
+  color: #000; /* Cambia a color negro cuando está enfocado */
+}
+
+.input-field::placeholder {
+  color: #b0b0b0; /* Color gris claro para el texto del placeholder */
+  opacity: 1;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Estilos para el botón Edit */
+/* Estilos para el botón Edit */
+.edit-button {
+  border: 1.5px solid #7163f1; /* Reduce el grosor del borde */
+  border-radius: 10px; /* Ajuste leve en el borde redondeado */
+  padding: 4px 10px; /* Reduce el padding */
+  background-color: white;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem; /* Disminuye el tamaño de la fuente */
+  cursor: pointer;
+  margin-bottom: 56px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.edit-button.active {
+  background-color: #7163f1;
+  color: white;
+}
+

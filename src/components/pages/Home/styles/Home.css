@@ -1,17 +1,28 @@
-.Home {
-  background-image: url('../../../../assets/images/Auth/Background.png');
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh; /* Ensure the background covers the entire view */
-  height: auto;
+/* Prevent page from being scrollable */
+html, body {
+  height: 100%;
+  margin: 0;
   overflow: hidden;
 }
 
+/* Home container should fit exactly in the viewport */
+.Home {
+  display: flex;
+  flex-direction: column;
+  background-image: url('../../../../assets/images/Auth/Background.png');
+  background-size: cover;
+  background-position: center;
+  max-height: 100vh;
+  height: 100vh; /* Set height to 100vh */
+  overflow: hidden;
+}
 
 .dashboard {
   padding: 20px;
   font-family: "Poppins", sans-serif;
   background-color: #f5f7fb;
+  max-height: 100%; /* Ensure the dashboard takes up full height */
+  overflow: hidden; /* Prevent overflow */
 }
 
 header {
@@ -20,7 +31,7 @@ header {
   justify-content: space-between; /* Asegura que los botones estén en los extremos */
   width: 100%;
   position: relative;
-  margin-top: 8%;
+  margin-top: 4%;
   padding-bottom: 4%;
 }
 
@@ -68,8 +79,14 @@ header h2 {
 }
 
 .Container {
+  flex-grow: 1;
   padding-left: 8%;
   padding-right: 8%;
+  overflow: hidden; /* Prevent overflow in the container */
+}
+
+.CustomBottomNavigation {
+  flex-shrink: 0;
 }
 
 .greeting {
@@ -83,8 +100,6 @@ header h2 {
   padding-bottom: 16%;
 }
 
-
-
 .carousel {
   display: flex;
   overflow-x: auto; /* Permite que las tarjetas se superpongan fuera del contenedor */
@@ -94,7 +109,6 @@ header h2 {
   padding-top: 4%;
   position: relative; /* Asegura que el contenedor sea el punto de referencia para la posición absoluta */
   scroll-behavior: smooth;
-
 }
 
 .participated-project {
@@ -190,8 +204,6 @@ header h2 {
   cursor: pointer;
 }
 
-
-
 .all-projects {
   margin-top: 8%;
 }
@@ -210,7 +222,6 @@ header h2 {
   color: #756EF3;
 }
 
-
 .project-card {
   display: flex;
   flex-direction: column;
@@ -222,7 +233,6 @@ header h2 {
   position: relative;
   border: 2px solid #E9F1FF; /* Add border to project-card */
 }
-
 
 .project-card p {
   margin: 0;

@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": "@cyberjaya",
+      "name": "JMB DMELOR RESIDENCY",
+      "email": "Albert@gmail.com",
+      "phoneNumber": "+6018726619"
+    },
+    {
+      "id": "@lololol",
+      "name": "lol dickson",
+      "email": "son@gmail.com",
+      "phoneNumber": "+66666666666"
+    },
+    {
+      "id": "@regularname",
+      "name": "name name name name",
+      "email": "name@gmail.com",
+      "phoneNumber": "+15224567897"
+    }
+  ]
+}

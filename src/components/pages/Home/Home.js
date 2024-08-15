@@ -9,14 +9,13 @@ import MessageNIcon from "../../../assets/images/Home/MessageN.png";
 import { IoIosArrowForward } from "react-icons/io";
 import CustomBottomNavigation from "../../widgets/CustomBottomNavigation";
 import { useNavigate } from "react-router-dom"; // Importa useNavigate
-import { hasAnyMessage, updateHasAnyMessage } from "../../../context/globalVariables.js";
 
 const HomeView = () => {
   const options = { weekday: "long", day: "numeric" };
   const malaysiaTime = new Date().toLocaleDateString("en-MY", options);
   const navigate = useNavigate(); // Usa useNavigate para la navegación
   
-  updateHasAnyMessage();
+  let hasAnyMessage = mockData.projects.some(project => project.HasMessages);
 
   // Limitar los proyectos a los primeros 3
   const limitedProjects = mockData.projects.slice(0, 3);

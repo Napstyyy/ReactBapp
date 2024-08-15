@@ -59,7 +59,7 @@ h1 {
   font-size: 1.625rem; /* 26px converted to rem */
   font-weight: bold;
   margin: 5% 0 2.5%; /* Converted to percentages */
-  text-align: left; /* Aligns text to the left */
+  text-align: left !important; /* Aligns text to the left */
   width: 100%; /* Ensures it takes full width if needed */
   padding-top: 8%;
 }

@@ -41,7 +41,7 @@ const CustomBottomNavigation = ({ hasAnyMessage }) => {
       <BottomNavigationAction 
         className="button" 
         icon={hasAnyMessage ? <img src={MessageNIcon} alt="Message" className="image" /> : <img src={MessageIcon} alt="Message" className="image" />} 
-        onClick={() => handleNavigation("/messages")}
+        onClick={() => handleNavigation("/Chat")}
       />
       <BottomNavigationAction 
         className="button" 

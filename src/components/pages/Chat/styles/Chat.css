@@ -8,20 +8,35 @@
   border-radius: 8px;
   border: 1px solid #ddd;
   height: 500px; /* Altura del contenedor del chat */
-  overflow-y: scroll;
+  overflow-y: hidden; /* Oculta el desbordamiento vertical inicial */
+  position: relative;
+}
+
+.Messages-Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Coloca los mensajes al final */
+  height: 100%;
+  overflow-y: auto; /* Permite desplazamiento vertical cuando hay muchos mensajes */
+  padding-bottom: 8px; /* Espacio debajo del último mensaje */
 }
 
 .message-container {
   margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
-.message-time {
-  font-size: 12px;
-  color: #888;
-  margin-bottom: 4px;
+.user-message {
+  display: flex;
+  justify-content: flex-end; /* Alinea el bubble del usuario a la derecha */
 }
 
-.message-bubble {
+.user-bubble {
+  background-color: #007bff;
+  color: white;
+  align-self: flex-end;
+  margin-left: auto; /* Empuja el bubble a la derecha */
   padding: 12px;
   border-radius: 20px;
   max-width: 70%;
@@ -29,24 +44,26 @@
   font-size: 14px;
 }
 
-.user-message {
-  text-align: right;
-}
-
-.user-bubble {
-  background-color: #007bff;
-  color: white;
-  align-self: flex-end;
-}
-
 .hashim-message {
-  text-align: left;
+  display: flex;
+  justify-content: flex-start; /* Alinea el bubble de Hashim a la izquierda */
 }
 
 .hashim-bubble {
   background-color: #e9e9eb;
   color: #000;
   align-self: flex-start;
+  padding: 12px;
+  border-radius: 20px;
+  max-width: 70%;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.message-time {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 4px;
 }
 
 .message-image {
@@ -59,6 +76,9 @@
   align-items: center;
   padding: 8px;
   border-top: 1px solid #ddd;
+  position: sticky;
+  bottom: 0; /* Fija la barra de entrada en la parte inferior */
+  background-color: #f9f9f9;
 }
 
 .chat-input-container input {

@@ -44,7 +44,7 @@ const ProfileView = () => {
       
       <img src={roundedLogo} alt="Rounded Logo" className="rounded-logo" />
       
-      <h1>JMB DMELOR RESIDENCY</h1>
+      <h1 className="HName">JMB DMELOR RESIDENCY</h1>
       <p className="idInfo">@cyberjaya</p>
 
       <button className={`edit-button ${isEditable ? "active" : ""}`} onClick={toggleEdit}>

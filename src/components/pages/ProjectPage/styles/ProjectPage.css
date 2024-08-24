@@ -1,0 +1,124 @@
+.imageContainer {
+  width: 100vw; /* Ancho completo de la pantalla */
+  position: relative;
+  height: 10%; /* Reducir la altura a la mitad de la altura de la ventana */
+  margin: 0 auto;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ajustar la imagen al contenedor sin recortar */
+}
+
+/* Asegúrate de que el contenedor principal sea scrollable */
+.container {
+  padding: 0% 1% 0 1%;
+  margin-top: 0;
+  position: relative;
+  top: 0;
+  max-height: 80vh; /* Limita la altura de la tarjeta para que no ocupe toda la pantalla */
+  overflow-y: auto; /* Hacer que el contenido sea desplazable */
+}
+
+.card {
+  margin-top: 0px;
+  border-radius: 8px;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.content {
+  padding: 16px;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #002055;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.messageIcon {
+  width: 24px; /* Ajusta el tamaño del ícono según sea necesario */
+  height: 24px;
+  margin-left: 8px; /* Añade un pequeño espacio entre el título y el ícono */
+}
+
+.location {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 14px; /* Ajusta el tamaño según sea necesario */
+  color: #555;
+}
+
+.descriptionTitle,
+.documentsTitle {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 16px; /* Ajusta el tamaño según sea necesario */
+  color: #002055;
+  margin-bottom: 8px;
+}
+
+.description {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: #555;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.docButton {
+  display: flex;
+  justify-content: flex-start;
+  text-transform: none;
+  margin-bottom: 8px;
+  background-color: #f5f5f5;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.docButton:hover {
+  background-color: #e0e0e0;
+}
+
+.submitButton {
+  background-color: #3f51b5;
+  color: #fff;
+  padding: 12px;
+  border-radius: 0 0 8px 8px;
+}
+
+.submitButton:hover {
+  background-color: #303f9f;
+}
+
+.slick-dots {
+  bottom: 10px;
+}
+
+.slick-dots li {
+  margin: 0 -4px;
+}
+
+.slick-dots li button:before {
+  font-size: 8px;
+  color: #ffffff;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #3f51b5;
+}

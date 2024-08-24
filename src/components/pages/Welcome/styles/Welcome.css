@@ -19,6 +19,7 @@
   max-width: 100%;        /* Ensure the container does not exceed the viewport width */
 }
 
+
 .welcome-image {
   width: 60%; /* Adjust width as needed */
   max-width: 600px; /* Adjust max-width as needed */

@@ -7,7 +7,7 @@
 }
 
 /* Estilos para centrar h1 e idInfo */
-h1 {
+.HName {
   text-align: center !important;
   font-family: 'Poppins', sans-serif;
   color: #333;

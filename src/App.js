@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import WelcomeView from './components/pages/Welcome/Welcome.js';
@@ -12,6 +11,7 @@ import Layout from './components/pages/Layout/Layout.js';
 import AllProjectView from './components/pages/Home/AllProject.js';
 import ChatView from './components/pages/Chat/Chat.js';
 import ProfileView from './components/pages/Profile/Profile.js';
+import ProjectPageView from './components/pages/ProjectPage/ProjectPage.js';
 
 const App = () => {
   return (
@@ -27,6 +27,7 @@ const App = () => {
         <Route path="/AllProject" element={<Layout><AllProjectView /></Layout>} />
          <Route path="/Chat" element={<Layout><ChatView /></Layout>} />
         <Route path="/Profile" element={<Layout><ProfileView /></Layout>} />
+        <Route path="/ProjectPage" element={<ProjectPageView />} />
       </Routes>
     </Router>
   );

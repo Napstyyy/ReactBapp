@@ -55,7 +55,7 @@ h2 {
   text-align: left;
 }
 
-h1 {
+.Welcome-backh {
   font-size: 1.625rem; /* 26px converted to rem */
   font-weight: bold;
   margin: 5% 0 2.5%; /* Converted to percentages */

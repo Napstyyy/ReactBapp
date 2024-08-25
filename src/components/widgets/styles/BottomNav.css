@@ -36,6 +36,6 @@
 }
 
 .image {
-  width: 46%;
+  width: 46% !important;
   height: auto;
 }

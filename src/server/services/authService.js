@@ -42,10 +42,16 @@ const verifyUser = (email, password, callback) => {
         console.error('Error comparing password:', err.stack);
         return callback(err, null);
       }
+
       if (!isMatch) {
         return callback(null, null); // La contraseña no coincide
       }
-      callback(null, user);
+
+      // Devuelve el usuario incluyendo el `user_type`
+      callback(null, {
+        email: user.email,
+        user_type: user.user_type,
+      });
     });
   });
 };

@@ -4,10 +4,10 @@ import { SlArrowLeft } from "react-icons/sl";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import { FaApple } from "react-icons/fa";
-import { hasAnyMessage, updateHasAnyMessage } from "../../../context/globalVariables.js";
+import { hasAnyMessage, updateHasAnyMessage } from "../../context/globalVariables.js";
 import CustomBottomNavigation from "../../widgets/CustomBottomNavigation";
 import users from "../../../data/mockMessagesData.json";
-import getUserNameById from "../../../context/globalVariables.js";
+import getUserNameById from "../../context/globalVariables.js";
 import "./styles/Profile.css"
 import roundedLogo from "../../../assets/images/RoundedLogo.png";
 

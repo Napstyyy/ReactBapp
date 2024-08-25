@@ -1,6 +1,6 @@
 // src/config/globalVariables.js
-import mockData from "../data/mockData.json";
-import users from "../data/mockMessagesData.json";
+import mockData from "../../data/mockData.json";
+import users from "../../data/mockMessagesData.json";
 
 export let hasAnyMessage = false;
 

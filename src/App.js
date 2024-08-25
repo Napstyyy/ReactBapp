@@ -12,9 +12,11 @@ import AllProjectView from './components/pages/Home/AllProject.js';
 import ChatView from './components/pages/Chat/Chat.js';
 import ProfileView from './components/pages/Profile/Profile.js';
 import ProjectPageView from './components/pages/ProjectPage/ProjectPage.js';
+import { UserProvider } from './components/context/UserContext.js';
 
 const App = () => {
   return (
+    <UserProvider>
     <Router>
       <Routes>
         <Route path="/" element={<WelcomeView />} />
@@ -30,6 +32,7 @@ const App = () => {
         <Route path="/ProjectPage" element={<ProjectPageView />} />
       </Routes>
     </Router>
+    </UserProvider>
   );
 };
 

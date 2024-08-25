@@ -1,33 +1,40 @@
+// components/SignInView.js
 import React, { useState } from "react";
 import "../styles/SignIn.css";
 import { SlArrowLeft } from "react-icons/sl";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import config from '../../../../server/config/config'; // Import the config
+import config from '../../../../server/config/config'; // Importa la configuración
+import { useUser } from '../../../context/UserContext'; // Importa el contexto
 
 const SignInView = () => {
   const [activeRole, setActiveRole] = useState('manager');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const { setUserType, setUserEmail } = useUser(); // Obtén las funciones del contexto
 
   const handleButtonClick = async () => {
     try {
-      const response = await fetch(`${config.apiUrl}/auth/signin`, { // Use globalized API URL
+      const userType = activeRole === 'manager' ? 1 : 0;
+
+      const response = await fetch(`${config.apiUrl}/auth/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, user_type: userType }), // Envía user_type
       });
 
       const data = await response.json();
 
       if (response.ok) {
+        localStorage.setItem('userEmail', email); // Guarda el correo electrónico en el almacenamiento local
+        setUserEmail(email); // Guarda el correo electrónico en el contexto
+        setUserType(userType); // Guarda el userType en el contexto
         alert('Sign-in successful!');
-        // Save user info to state or local storage as needed
-        navigate('/Home');
+        navigate('/Home'); // Redirige a la vista de inicio
       } else {
         alert(data.message);
       }

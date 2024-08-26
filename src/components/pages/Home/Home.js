@@ -1,33 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/Home.css";
-import mockData from "../../../data/mockData.json";
 import { RxDashboard } from "react-icons/rx";
 import NotificationIcon from "../../../assets/images/Home/notificationIcon.png";
-import { BsArrowRightCircle } from "react-icons/bs";
-import MessageIcon from "../../../assets/images/Home/Message.png";
-import MessageNIcon from "../../../assets/images/Home/MessageN.png";
 import { IoIosArrowForward } from "react-icons/io";
 import CustomBottomNavigation from "../../widgets/CustomBottomNavigation";
 import { useNavigate } from "react-router-dom";
-import { useUser } from '../../context/UserContext'; // Importa el contexto
+import { useUser } from '../../context/UserContext';
+import MessageIcon from "../../../assets/images/Home/Message.png";
+import MessageNIcon from "../../../assets/images/Home/MessageN.png";
+import config from '../../../server/config/config';
 
 const HomeView = () => {
-  const options = { weekday: "long", day: "numeric" };
-  const malaysiaTime = new Date().toLocaleDateString("en-MY", options);
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const { userType, email } = useUser(); // Obtén userType del contexto
+  const { userType, userEmail } = useUser();
+  console.log(userEmail)
 
-  console.log('UserType:', userType); // Verifica el valor de userType
-  console.log('UserEmail:', email); // Verifica el valor de email
+useEffect(() => {
+  const fetchProjects = async () => {
+    try {
+      const requestBody = { email: userEmail }; // Email quemado
+      console.log("Sending request body:", requestBody);
 
-  const hasAnyMessage = mockData.projects.some((project) => project.HasMessages);
-  const limitedProjects = mockData.projects.slice(0, 3);
+      const response = await fetch(`${config.apiUrl}/api/projects`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody), // Asegúrate de que esté correctamente formateado
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setProjects(data.projects);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching projects:", error);
+      setLoading(false);
+    }
+  };
+
+  fetchProjects();
+}, []);  // Eliminamos la dependencia 'email' ya que se está usando un valor estático
+
+
+
+
+
 
   const handleViewAllProjects = () => {
     navigate("/AllProject");
   };
 
   const renderContent = () => {
+    if (loading) {
+      return <p>Loading...</p>;
+    }
+
     if (userType === 1) {
       return (
         <>
@@ -35,7 +68,7 @@ const HomeView = () => {
             <button className="home-button left">
               <RxDashboard />
             </button>
-            <h2>{malaysiaTime}</h2>
+            <h2>{new Date().toLocaleDateString("en-MY", { weekday: "long", day: "numeric" })}</h2>
             <button className="home-button right">
               <img src={NotificationIcon} alt="Notification" className="notification-image" />
             </button>
@@ -49,8 +82,7 @@ const HomeView = () => {
               <div className="carousel">
                 <div className="participated-project">
                   <h2>Pending Projects</h2>
-                  <p>3 Pending </p>
-                  <p>projects</p>
+                  <p>3 Pending projects</p>
                   <div className="project-details">
                     <div className="project-images">
                       <img src="https://via.placeholder.com/50" alt="Project 1" className="project-image" />
@@ -79,11 +111,11 @@ const HomeView = () => {
                 All Projects
                 <IoIosArrowForward className="all-projects-icon" onClick={handleViewAllProjects} />
               </h2>
-              {limitedProjects.map((project, index) => (
+              {projects.slice(0, 3).map((project, index) => (
                 <div className="project-card" key={index}>
-                  <p>{project.quotations} quotation(s) uploaded</p>
+                  <p>You have some quotations uploaded</p>
                   <h3>{project.title}</h3>
-                  <p>Average price @ {project.averagePrice}</p>
+                  <p>{project.description}</p>
                   {project.HasMessages ? (
                     <img src={MessageNIcon} alt="Message Notification" />
                   ) : (
@@ -93,7 +125,7 @@ const HomeView = () => {
               ))}
             </div>
           </div>
-          <CustomBottomNavigation hasAnyMessage={hasAnyMessage} name="Home" />
+          <CustomBottomNavigation hasAnyMessage={projects.some(project => project.HasMessages)} name="Home" />
         </>
       );
     } else if (userType === 0) {
@@ -103,7 +135,7 @@ const HomeView = () => {
             <button className="home-button left">
               <RxDashboard />
             </button>
-            <h2>{malaysiaTime}</h2>
+            <h2>{new Date().toLocaleDateString("en-MY", { weekday: "long", day: "numeric" })}</h2>
             <button className="home-button right">
               <img src={NotificationIcon} alt="Notification" className="notification-image" />
             </button>
@@ -116,8 +148,8 @@ const HomeView = () => {
             <div className="carousel-container">
               <div className="carousel">
                 <div className="participated-project">
-                  <h2>Participated Project</h2>
-                  <p>Projects you have quoted or chatted with</p>
+                  <h2>Pending Projects</h2>
+                  <p>3 Pending projects</p>
                   <div className="project-details">
                     <div className="project-images">
                       <img src="https://via.placeholder.com/50" alt="Project 1" className="project-image" />
@@ -146,11 +178,11 @@ const HomeView = () => {
                 All Projects
                 <IoIosArrowForward className="all-projects-icon" onClick={handleViewAllProjects} />
               </h2>
-              {limitedProjects.map((project, index) => (
+              {projects.slice(0, 3).map((project, index) => (
                 <div className="project-card" key={index}>
-                  <p>{project.quotations} quotation(s) uploaded</p>
-                  <h3>{project.title}</h3>
-                  <p>Average price @ {project.averagePrice}</p>
+                  <p>You have some quotations uploaded</p>
+                  <h3>{project.name}</h3>
+                  <p>{project.description}</p>
                   {project.HasMessages ? (
                     <img src={MessageNIcon} alt="Message Notification" />
                   ) : (
@@ -160,15 +192,15 @@ const HomeView = () => {
               ))}
             </div>
           </div>
-          <CustomBottomNavigation hasAnyMessage={hasAnyMessage} name="Home" />
+          <CustomBottomNavigation hasAnyMessage={projects.some(project => project.HasMessages)} name="Home" />
         </>
       );
     } else {
-      return <p>Loading...</p>; // Opcional: mostrar un mensaje de carga si no hay userType
+      return <p>Invalid user type</p>;
     }
   };
 
-  return <div className="Home">{renderContent()}</div>;
+  return <div className="HomeView">{renderContent()}</div>;
 };
 
 export default HomeView;

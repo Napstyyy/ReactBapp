@@ -30,7 +30,6 @@ const SignInView = () => {
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem('userEmail', email); // Guarda el correo electrónico en el almacenamiento local
         setUserEmail(email); // Guarda el correo electrónico en el contexto
         setUserType(userType); // Guarda el userType en el contexto
         alert('Sign-in successful!');
@@ -42,6 +41,7 @@ const SignInView = () => {
       console.error('Error during sign-in:', error);
       alert('Failed to sign in');
     }
+
   };
 
   const handleBackButtonClick = () => {

@@ -1,19 +1,16 @@
 {
   "projects": [
     {
-      "quotations": 2,
       "title": "Leaking in TNB transformer room",
-      "averagePrice": "RM 32,121.00",
+      "description": "RM 32,121.00",
       "HasMessages": true
     },
     {
-      "quotations": 0,
       "title": "Road repair @ guard house area",
       "averagePrice": "-",
       "HasMessages": false
     },
     {
-      "quotations": 3,
       "title": "Repainting of building",
       "averagePrice": "RM 182,981.00",
       "HasMessages": false

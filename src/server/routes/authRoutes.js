@@ -1,5 +1,7 @@
 const express = require('express');
 const { createUser, verifyUser } = require('../services/authService');
+const { getProjectsByEmail } = require('../services/projectService');
+const db = require('../config/db');
 
 const router = express.Router();
 
@@ -40,7 +42,6 @@ router.post('/signin', (req, res) => {
   });
 });
 
-
 router.post('/user-type', (req, res) => {
   const { email } = req.body;
 
@@ -64,5 +65,6 @@ router.post('/user-type', (req, res) => {
     res.status(200).json({ user_type: userType });
   });
 });
+
 
 module.exports = router;

@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import Slider from 'react-slick';
+import axios from "axios";
+import config from '../../../server/config/config'; // Importa la configuración
+import { useLocation } from 'react-router-dom';
 import { Button, Typography, Container, Grid } from '@mui/material';
 import { UploadFile, PictureAsPdf } from '@mui/icons-material';
 import 'slick-carousel/slick/slick.css';
@@ -10,6 +13,23 @@ import MessageIcon from "../../../assets/images/Home/Message.png";
 
 
 const ProjectDetail = () => {
+  const location = useLocation();
+  const { projectId, name } = location.state; // Obtiene el projectId de la ubicación
+  const nameProjectId = name || projectId; // Usa projectId si name no está disponible
+  const [project, setProjects] = useState([]); // Estado para almacenar los proyectos
+
+  useEffect(() => {
+      // Si el usuario es del tipo 0, obtenemos los proyectos del backend
+      axios.get(`${config.apiUrl}/projects/getOneProject/:${nameProjectId}`)
+        .then(response => {
+          console.log("Project fetched successfully!", response.data);
+          setProjects(response.data);
+        })
+        .catch(error => {
+          console.error("There was an error fetching the projects!", error);
+        });
+    
+  }, []);
   const settings = {
     dots: true,
     infinite: true,
@@ -23,13 +43,13 @@ const ProjectDetail = () => {
       <div className="imageContainer">
         <Slider {...settings}>
           <div>
-            <img src={ProjectView} alt="Project 1" className="image" />
+            <img src={ProjectView} alt="Project 1" className="imageContainer" />
           </div>
           <div>
-            <img src="/path-to-image2.jpg" alt="Project 2" className="image" />
+            <img src="/path-to-image2.jpg" alt="Project 2" className="imageContainer" />
           </div>
           <div>
-            <img src="/path-to-image3.jpg" alt="Project 3" className="image" />
+            <img src="/path-to-image3.jpg" alt="Project 3" className="imageContainer" />
           </div>
         </Slider>
       </div>
@@ -37,26 +57,26 @@ const ProjectDetail = () => {
         <div className="card">
           <div className="content">
             <div className="titleContainer">
-              <Typography variant="h5" component="div" gutterBottom className="title">
-                Repainting of building
-              </Typography>
+              <div gutterBottom className="title">
+                {project.project_name}
+              </div>
               <img src={MessageIcon} alt="Message" className="messageIcon" />
             </div>
 
-            <Typography variant="subtitle2" color="textSecondary" gutterBottom className="location">
+            <div className="location">
               @cyberjaya, malaysia
-            </Typography>
+            </div>
 
-            <Typography variant="body2" color="textSecondary" className="descriptionTitle">
+            <div  className="descriptionTitle">
               Descriptions
-            </Typography>
-            <Typography variant="body2" color="textSecondary" className="description">
+            </div>
+            <div className="description">
               We require the repainting of two residential building blocks, each comprising 100 units. The buildings are located in [Location]. This project aims to enhance the aesthetic appeal and protect the structural integrity of the buildings.
-            </Typography>
+            </div>
 
-            <Typography variant="body2" color="textSecondary" className="documentsTitle">
-              Documents:
-            </Typography>
+            <div className="documentsTitle">
+              Documents
+            </div>
             <Grid container spacing={1}>
               <Grid item xs={12}>
                 <Button startIcon={<PictureAsPdf />} fullWidth className="docButton">
@@ -70,23 +90,23 @@ const ProjectDetail = () => {
               </Grid>
             </Grid>
 
-            <Typography variant="body2" color="textSecondary" component="div">
+            <div className="documentsTitle">
               Quotations:
-            </Typography>
+            </div>
             <Grid container spacing={1} alignItems="center">
               <Grid item xs={12} sm={6}>
-                <Button variant="outlined" startIcon={<UploadFile />} fullWidth>
-                  Click to upload
-                </Button>
+                <Button className="uploadButtonContainer"  >
+      <div className="uploadButtonText">Click to upload</div>
+    </Button>
               </Grid>
               <Grid item xs={12} sm={6}>
-                <Button variant="contained" color="primary" fullWidth>
+                <button className="quotationButton" >
                   Use Quotation Generator
-                </Button>
+                </button>
               </Grid>
             </Grid>
           </div>
-          <Button variant="contained" color="primary" fullWidth className="submitButton">
+          <Button  className="submitButton">
             Submit
           </Button>
         </div>

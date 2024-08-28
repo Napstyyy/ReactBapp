@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import config from '../../../server/config/config'; // Importa la configuración
 import "./styles/Home.css";
 import mockData from "../../../data/mockData.json";
 import { RxDashboard } from "react-icons/rx";
@@ -15,16 +17,42 @@ const HomeView = () => {
   const options = { weekday: "long", day: "numeric" };
   const malaysiaTime = new Date().toLocaleDateString("en-MY", options);
   const navigate = useNavigate();
-  const { userType, email } = useUser(); // Obtén userType del contexto
-
+  const { userType, userEmail } = useUser(); // Obtén userType del contexto
+  const [projects, setProjects] = useState([]); // Estado para almacenar los proyectos
   console.log('UserType:', userType); // Verifica el valor de userType
-  console.log('UserEmail:', email); // Verifica el valor de email
+  console.log('UserEmail:', userEmail); // Verifica el valor de email
+  const [hasAnyMessage, setHasAnyMessage] = useState(false); // Estado para verificar si hay mensajes
+  //const hasAnyMessage = mockData.projects.some((project) => project.HasMessages);
+  const limitedProjects = projects.slice(0, 3);
 
-  const hasAnyMessage = mockData.projects.some((project) => project.HasMessages);
-  const limitedProjects = mockData.projects.slice(0, 3);
+  useEffect(() => {
+    if (userType === 0) {
+      // Si el usuario es del tipo 0, obtenemos los proyectos del backend
+      axios.get(`${config.apiUrl}/projects/with-quotes/${userEmail}`)
+        .then(response => {
+          console.log("Projects fetched successfully!", response.data);
+          setProjects(response.data);
+          // Verifica si alguno de los proyectos tiene mensajes
+          const anyMessage = response.data.some(project => project.HasMessages);
+          setHasAnyMessage(anyMessage);
+        })
+        .catch(error => {
+          console.error("There was an error fetching the projects!", error);
+        });
+    }
+  }, [userType, userEmail]); // La solicitud se vuelve a hacer si userType o email cambian
+
 
   const handleViewAllProjects = () => {
     navigate("/AllProject");
+  };
+
+  const projectInfo = (proyectId) => {
+    navigate("/ProjectPage", { state: { proyectId: proyectId, name: proyectId } });
+  };
+
+  const projectChat = (proyectId) => {
+    navigate("/Chat", { state: { proyectId: proyectId, name: proyectId } });
   };
 
   const renderContent = () => {
@@ -82,7 +110,7 @@ const HomeView = () => {
               {limitedProjects.map((project, index) => (
                 <div className="project-card" key={index}>
                   <p>{project.quotations} quotation(s) uploaded</p>
-                  <h3>{project.title}</h3>
+                  <h3>{project.name}</h3>
                   <p>Average price @ {project.averagePrice}</p>
                   {project.HasMessages ? (
                     <img src={MessageNIcon} alt="Message Notification" />
@@ -147,14 +175,14 @@ const HomeView = () => {
                 <IoIosArrowForward className="all-projects-icon" onClick={handleViewAllProjects} />
               </h2>
               {limitedProjects.map((project, index) => (
-                <div className="project-card" key={index}>
-                  <p>{project.quotations} quotation(s) uploaded</p>
-                  <h3>{project.title}</h3>
-                  <p>Average price @ {project.averagePrice}</p>
+                console.log(project),
+                <div className="project-card" key={index} onClick={() => projectInfo(project.id_project)}>
+                  <h3>{project.project_name}</h3>
+                  <p>Average price @ {project.payment_terms}</p>
                   {project.HasMessages ? (
-                    <img src={MessageNIcon} alt="Message Notification" />
+                    <img src={MessageNIcon} alt="Message Notification" onClick={() => projectChat(project.id_project)} />
                   ) : (
-                    <img src={MessageIcon} alt="Message" />
+                    <img src={MessageIcon} alt="Message" onClick={() => projectChat(project.id_project)} />
                   )}
                 </div>
               ))}

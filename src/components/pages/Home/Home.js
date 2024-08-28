@@ -10,14 +10,12 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from '../../context/UserContext';
 import MessageIcon from "../../../assets/images/Home/Message.png";
 import MessageNIcon from "../../../assets/images/Home/MessageN.png";
-import config from '../../../server/config/config';
 
 const HomeView = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { userType, userEmail } = useUser(); // Obtén userType del contexto
-  const [projects, setProjects] = useState([]); // Estado para almacenar los proyectos
   console.log('UserType:', userType); // Verifica el valor de userType
   console.log('UserEmail:', userEmail); // Verifica el valor de email
   const [hasAnyMessage, setHasAnyMessage] = useState(false); // Estado para verificar si hay mensajes

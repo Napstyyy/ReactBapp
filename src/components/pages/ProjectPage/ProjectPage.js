@@ -106,9 +106,9 @@ const ProjectDetail = () => {
               </Grid>
             </Grid>
           </div>
-          <Button  className="submitButton">
+          <button  className="submitButton">
             Submit
-          </Button>
+          </button>
         </div>
       </Container>
     </>

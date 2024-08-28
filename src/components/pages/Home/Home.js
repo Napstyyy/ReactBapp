@@ -10,14 +10,12 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from '../../context/UserContext';
 import MessageIcon from "../../../assets/images/Home/Message.png";
 import MessageNIcon from "../../../assets/images/Home/MessageN.png";
-import config from '../../../server/config/config';
 
 const HomeView = () => {
   const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
+  //const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { userType, userEmail } = useUser(); // Obtén userType del contexto
-  const [projects, setProjects] = useState([]); // Estado para almacenar los proyectos
   console.log('UserType:', userType); // Verifica el valor de userType
   console.log('UserEmail:', userEmail); // Verifica el valor de email
   const [hasAnyMessage, setHasAnyMessage] = useState(false); // Estado para verificar si hay mensajes
@@ -54,10 +52,10 @@ const HomeView = () => {
     navigate("/Chat", { state: { proyectId: proyectId, name: proyectId } });
   };
 
-  const renderContent = () => {
-    if (loading) {
+   const renderContent = () => {
+    /*if (loading) {
       return <p>Loading...</p>;
-    }
+    }*/
 
     if (userType === 1) {
       return (
@@ -177,9 +175,8 @@ const HomeView = () => {
                 <IoIosArrowForward className="all-projects-icon" onClick={handleViewAllProjects} />
               </h2>
               {limitedProjects.map((project, index) => (
-                console.log(project),
-                <div className="project-card" key={index} onClick={() => projectInfo(project.id_project)}>
-                  <h3>{project.project_name}</h3>
+                <div className="project-card" key={index} >
+                  <h3 onClick={() => projectInfo(project.id_project)}>{project.project_name}</h3>
                   <p>Average price @ {project.payment_terms}</p>
                   {project.HasMessages ? (
                     <img src={MessageNIcon} alt="Message Notification" onClick={() => projectChat(project.id_project)} />

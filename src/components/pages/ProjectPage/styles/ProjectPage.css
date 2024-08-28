@@ -30,7 +30,7 @@
 }
 
 .content {
-  padding: 16px;
+  padding: 15px;
 }
 
 .titleContainer {
@@ -41,14 +41,16 @@
 
 .title {
   font-family: 'Poppins', sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   color: #002055;
-  margin-bottom: 8px;
+  margin-top: 10px;
+  margin-bottom: -4px;
   text-align: left;
 }
 
 .messageIcon {
+  margin-top: 10px;
   width: 24px; /* Ajusta el tamaño del ícono según sea necesario */
   height: 24px;
   margin-left: 8px; /* Añade un pequeño espacio entre el título y el ícono */
@@ -57,7 +59,8 @@
 .location {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
-  font-size: 14px; /* Ajusta el tamaño según sea necesario */
+  font-size: 12px; /* Ajusta el tamaño según sea necesario */
+  margin-bottom: 20px;
   color: #555;
 }
 
@@ -65,9 +68,9 @@
 .documentsTitle {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
-  font-size: 16px; /* Ajusta el tamaño según sea necesario */
+  font-size: 15px; /* Ajusta el tamaño según sea necesario */
   color: #002055;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
 }
 
 .description {
@@ -75,7 +78,7 @@
   font-weight: 300;
   font-size: 14px;
   color: #555;
-  margin-top: 16px;
+  margin-top: 0px;
   margin-bottom: 16px;
 }
 
@@ -85,7 +88,7 @@
   text-transform: none;
   margin-bottom: 8px;
   background-color: #f5f5f5;
-  color: #333;
+  color: #002055;
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
   font-size: 14px;
@@ -95,16 +98,78 @@
   background-color: #e0e0e0;
 }
 
-.submitButton {
-  background-color: #3f51b5;
-  color: #fff;
+.uploadButtonContainer {
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  height: 40px;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.uploadButtonText {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #002055;
+  margin: 0 auto; /* Centra el texto horizontalmente */
+}
+
+.uploadIcon, .deleteIcon {
+  font-size: 24px;
+  color: #002055;
+}
+
+.uploadIcon:hover, .deleteIcon:hover {
+  color: #303f9f;
+  cursor: pointer;
+}
+
+
+.quotationButton {
+  width: 100%;
   padding: 12px;
-  border-radius: 0 0 8px 8px;
+  border: none;
+  border-radius: 8px;
+  background-color: #D0CCF1;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.quotationButton:hover {
+  background-color: #756df4;
+}
+
+
+.submitButton {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #1a1a24;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .submitButton:hover {
-  background-color: #303f9f;
+  background-color: #2a2a3c; /* Color de fondo al pasar el cursor */
 }
+
 
 .slick-dots {
   bottom: 10px;

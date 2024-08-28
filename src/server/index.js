@@ -12,6 +12,7 @@ app.use(cors());
 
 app.use(bodyParser.json());
 app.use('/auth', authRoutes); // Usa las rutas de autenticación
+app.use('/projects', projectRoutes); // Usa las rutas de proyectos
 app.use('/api', projectRoutes); // manejo de projectos
 app.use('/userData', userDataRoutes); // manejo de projectos
 

@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import config from '../../../server/config/config'; // Importa la configuración
 import "./styles/Home.css";
 import { RxDashboard } from "react-icons/rx";
 import NotificationIcon from "../../../assets/images/Home/notificationIcon.png";
@@ -14,46 +16,42 @@ const HomeView = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const { userType, userEmail } = useUser();
-  console.log(userEmail)
+  const { userType, userEmail } = useUser(); // Obtén userType del contexto
+  const [projects, setProjects] = useState([]); // Estado para almacenar los proyectos
+  console.log('UserType:', userType); // Verifica el valor de userType
+  console.log('UserEmail:', userEmail); // Verifica el valor de email
+  const [hasAnyMessage, setHasAnyMessage] = useState(false); // Estado para verificar si hay mensajes
+  //const hasAnyMessage = mockData.projects.some((project) => project.HasMessages);
+  const limitedProjects = projects.slice(0, 3);
 
-useEffect(() => {
-  const fetchProjects = async () => {
-    try {
-      const requestBody = { email: userEmail }; // Email quemado
-      console.log("Sending request body:", requestBody);
-
-      const response = await fetch(`${config.apiUrl}/api/projects`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody), // Asegúrate de que esté correctamente formateado
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      setProjects(data.projects);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching projects:", error);
-      setLoading(false);
+  useEffect(() => {
+    if (userType === 0) {
+      // Si el usuario es del tipo 0, obtenemos los proyectos del backend
+      axios.get(`${config.apiUrl}/projects/with-quotes/${userEmail}`)
+        .then(response => {
+          console.log("Projects fetched successfully!", response.data);
+          setProjects(response.data);
+          // Verifica si alguno de los proyectos tiene mensajes
+          const anyMessage = response.data.some(project => project.HasMessages);
+          setHasAnyMessage(anyMessage);
+        })
+        .catch(error => {
+          console.error("There was an error fetching the projects!", error);
+        });
     }
-  };
-
-  fetchProjects();
-}, []);  // Eliminamos la dependencia 'email' ya que se está usando un valor estático
-
-
-
-
+  }, [userType, userEmail]); // La solicitud se vuelve a hacer si userType o email cambian
 
 
   const handleViewAllProjects = () => {
     navigate("/AllProject");
+  };
+
+  const projectInfo = (proyectId) => {
+    navigate("/ProjectPage", { state: { proyectId: proyectId, name: proyectId } });
+  };
+
+  const projectChat = (proyectId) => {
+    navigate("/Chat", { state: { proyectId: proyectId, name: proyectId } });
   };
 
   const renderContent = () => {
@@ -113,9 +111,9 @@ useEffect(() => {
               </h2>
               {projects.slice(0, 3).map((project, index) => (
                 <div className="project-card" key={index}>
-                  <p>You have some quotations uploaded</p>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
+                  <p>{project.quotations} quotation(s) uploaded</p>
+                  <h3>{project.name}</h3>
+                  <p>Average price @ {project.averagePrice}</p>
                   {project.HasMessages ? (
                     <img src={MessageNIcon} alt="Message Notification" />
                   ) : (
@@ -178,15 +176,15 @@ useEffect(() => {
                 All Projects
                 <IoIosArrowForward className="all-projects-icon" onClick={handleViewAllProjects} />
               </h2>
-              {projects.slice(0, 3).map((project, index) => (
-                <div className="project-card" key={index}>
-                  <p>You have some quotations uploaded</p>
-                  <h3>{project.name}</h3>
-                  <p>{project.description}</p>
+              {limitedProjects.map((project, index) => (
+                console.log(project),
+                <div className="project-card" key={index} onClick={() => projectInfo(project.id_project)}>
+                  <h3>{project.project_name}</h3>
+                  <p>Average price @ {project.payment_terms}</p>
                   {project.HasMessages ? (
-                    <img src={MessageNIcon} alt="Message Notification" />
+                    <img src={MessageNIcon} alt="Message Notification" onClick={() => projectChat(project.id_project)} />
                   ) : (
-                    <img src={MessageIcon} alt="Message" />
+                    <img src={MessageIcon} alt="Message" onClick={() => projectChat(project.id_project)} />
                   )}
                 </div>
               ))}

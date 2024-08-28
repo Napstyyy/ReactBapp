@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/Home.css";
 import "./styles/AllProject.css";
+import config from '../../../server/config/config'; // Importa la configuración
+import axios from "axios";
 import mockData from "../../../data/mockData.json";
 import { RxDashboard } from "react-icons/rx";
 import NotificationIcon from "../../../assets/images/Home/notificationIcon.png";
@@ -17,21 +19,40 @@ const AllProjectView = () => {
   const navigate = useNavigate(); // Usa useNavigate para la navegación
   const [activeRole, setActiveRole] = useState('participated');
   const [searchTerm, setSearchTerm] = useState(''); // Estado para el término de búsqueda
-
+  const [projects, setProjects] = useState([]); // Estado para almacenar los proyectos
   // Determinar si algún proyecto tiene mensajes
-  let hasAnyMessage = mockData.projects.some(project => project.HasMessages);
+  const [hasAnyMessage, setHasAnyMessage] = useState(false);
+
+  useEffect(() => {
+      // Si el usuario es del tipo 0, obtenemos los proyectos del backend
+      axios.get(`${config.apiUrl}/projects/getProjects`)
+        .then(response => {
+          console.log("Projects fetched successfully!", response.data);
+          setProjects(response.data);
+          // Verifica si alguno de los proyectos tiene mensajes
+          const anyMessage = response.data.some(project => project.HasMessages);
+          setHasAnyMessage(anyMessage);
+        })
+        .catch(error => {
+          console.error("There was an error fetching the projects!", error);
+        });
+  }, []); // La solicitud se hace solo una vez al cargar el componente
 
   // Filtrar los proyectos basados en el término de búsqueda
-  const filteredProjects = mockData.projects.filter(project =>
-    project.title.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredProjects = projects.filter(project =>
+    project.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   // Limitar los proyectos a los primeros 3
-  const limitedProjects = filteredProjects.slice(0, 3);
+  //const limitedProjects = filteredProjects.slice(0, 3);
 
   // Función para manejar el clic en el ícono de "All Projects"
   const handleViewAllProjects = () => {
     navigate("/all-projects"); // Redirecciona a la página de "All Projects"
+  };
+
+  const projectChat = (proyectId) => {
+    navigate("/Chat", { state: { proyectId: proyectId, name: proyectId } });
   };
 
   return (
@@ -87,15 +108,15 @@ const AllProjectView = () => {
         </div>
 
         <div className="all-projects">
-          {limitedProjects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <div className="project-card" key={index}>
               <p>{project.quotations} quotation(s) uploaded</p>
-              <h3>{project.title}</h3>
+              <h3>{project.name}</h3>
               <p>Average price @ {project.averagePrice}</p>
               {project.HasMessages ? (
-                <img src={MessageNIcon} alt="Message Notification" />
+                <img src={MessageNIcon} alt="Message Notification" onClick={() => projectChat(project.id_project)} />
               ) : (
-                <img src={MessageIcon} alt="Message" />
+                <img src={MessageIcon} alt="Message" onClick={() => projectChat(project.id_project)} />
               )}
             </div>
           ))}

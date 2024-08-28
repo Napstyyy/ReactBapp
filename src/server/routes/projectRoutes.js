@@ -71,6 +71,4 @@ router.post('/messages/:projectId', (req, res) => {
     });
 });
 
-// Aquí puedes agregar más rutas para otros endpoints relacionados con proyectos
-
 module.exports = router;

@@ -1,0 +1,227 @@
+/* QuotationGenerator.css */
+.quotation-container {
+  width: 360px;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+  overflow-y: auto; /* Hacer scrolleable */
+}
+
+header {
+  display: flex;
+  flex-direction: column; /* Para que el header tenga dos filas */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header-title {
+  margin-bottom: 5px;
+}
+
+header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #002055;
+  margin: 0;
+}
+
+.header-subtitle p {
+  font-size: 14px;
+  color: #9b9b9b;
+  margin: 0;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: #848A94;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 90%;
+  padding: 5%;
+  border: 2px solid #f3f3f3;
+  border-radius: 16px;
+  font-size: 14px;
+  color: #002055;
+}
+
+.form-group textarea {
+  height: 100px;
+  resize: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #756EF3;
+  outline: none; /* Esto elimina el borde de enfoque predeterminado del navegador */
+}
+
+.item-breakdown {
+  margin-top: 50px;
+}
+
+.item-breakdown,
+.discount-section {
+  margin-bottom: 20px;
+}
+
+.discount-section {
+  margin-top: 60px;
+}
+
+.item-breakdown h3,
+.discount-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #848A94;
+  margin-bottom: 10px;
+}
+
+.table {
+  background-color: transparent; /* Eliminamos el fondo general */
+  padding: 0;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 1.2fr 0.5fr 0.5fr; /* Ajustar la primera columna para correr el "Price/Unit (RM)" */
+  gap: 10px; /* Espacio entre las celdas */
+}
+
+.table-header span:nth-child(2) {
+  margin-left: 10px; /* Mueve "Price/Unit (RM)" un poco hacia la derecha */
+}
+
+.table-header span {
+  font-size: 14px;
+  color: #9b9b9b;
+  font-weight: 500;
+  text-align: center; /* Centrar el texto */
+  background-color: transparent !important;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr 0.5fr; /* Tres columnas proporcionales */
+  gap: 10px; /* Espacio entre los inputs */
+  margin-bottom: 10px; /* Espacio entre filas */
+}
+
+.table-row input {
+  width: 80%;
+  padding: 22px 10px;
+  border: 2px solid #f3f3f3;
+  border-radius: 12px; /* Bordes redondeados */
+  font-size: 14px;
+  color: #848A94;
+  text-align: center; /* Centrar el texto */
+  background-color: transparent; /* Sin color de fondo */
+}
+
+.table-row input:focus {
+  border-color: #756EF3;
+  outline: none; /* Esto elimina el borde de enfoque predeterminado del navegador */
+}
+
+.table-header span,
+.table-row span {
+  background-color: #f3f3f3; /* Color de fondo para cada celda */
+  padding: 10px;
+  border-radius: 12px; /* Bordes redondeados */
+  font-size: 14px;
+  color: #002055; /* Color de texto */
+  text-align: center; /* Centrar el texto */
+}
+
+.table-header span {
+  color: #9b9b9b; /* Color de texto para el header */
+  font-weight: 500; /* Negrita para el header */
+}
+
+.item-footer {
+  display: flex;
+  justify-content: space-between; /* Alinea los elementos uno a la izquierda y otro a la derecha */
+  align-items: center; /* Centra verticalmente los elementos */
+  margin-top: 10px;
+}
+
+.add-item {
+  padding: 6px 20px; /* Ajusta el padding según sea necesario */
+  background-color: #756EF3;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 16px;
+}
+
+.total,
+.grand-total {
+  font-size: 16px;
+  font-weight: 600;
+  color: #77777D;
+  text-align: right;
+  margin-top: 16px;
+}
+
+.grand-total {
+  color: #756EF3; /* Color para el texto "Grand Total : RM 2000.00" */
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background-color: #002055;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.discount-section .price_unit{
+    padding-left: 86%;
+}
+/* Ajustes específicos */
+.discount-section .table-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Asigna 2.5 partes al primer input y 0.5 partes al segundo input */
+  gap: 10px; /* Espacio entre los inputs */
+  margin-bottom: 10px; /* Espacio entre filas */
+}
+
+.discount-section .table-row input:nth-child(2) {
+  margin-left: auto; /* Mueve "Price/Unit (RM)" lo más a la derecha posible */
+}
+
+.submitButton {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2D2D36;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 25px;
+}

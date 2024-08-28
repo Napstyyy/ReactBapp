@@ -3,33 +3,26 @@
   display: block;
   margin: 12% auto 0 auto; /* Centra la imagen y agrega margen inferior */
   width: 30%; /* Ajusta el tamaño de la imagen según sea necesario */
-  height: Auto; /* Ajusta el tamaño de la imagen según sea necesario */
+  height: auto; /* Mantiene las proporciones de la imagen */
 }
 
-/* Estilos para centrar h1 e idInfo */
-.HName {
-  text-align: center !important;
-  font-family: 'Poppins', sans-serif;
-  color: #333;
-  margin-top: 4px;
-  margin-bottom: 1px;
+.input-wrapper {
+  width: 100%;
+  overflow-y: auto;
+  padding-bottom: 35%; /* Añade un padding inferior para evitar que el contenido quede debajo del CustomBottomNavigation */
+  max-height: calc(100vh - 250px); /* Ajusta la altura para que el contenido no quede oculto detrás del CustomBottomNavigation */
 }
 
-.idInfo {
-  text-align: center; /* Centrar horizontalmente */
-  padding-bottom: 2px;
-  font-family: 'Poppins', sans-serif;
-  color: #868D95;
-  font-weight: 100;
-  margin-top: 1px;
-}
-
-/* Estilo de los input fields */
-.input-field {
+.input-container {
+  position: relative;
   width: 90%;
-  padding: 3.5%;
-  margin: 1.5% auto;
   margin-bottom: 8%;
+}
+
+.input-field {
+  width: 80%;
+  padding: 3.5%;
+  padding-right: 40px; /* Añade espacio para el ícono */
   height: 24px;
   border-radius: 0.850rem;
   border: 0.15rem solid #e0e0e0;
@@ -51,7 +44,32 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* Estilos para el botón Edit */
+.input-icon {
+  position: absolute;
+  right: 10px; /* Ajusta según sea necesario */
+  cursor: pointer;
+  width: 24px; /* Ajusta el tamaño del ícono */
+  height: 24px; /* Ajusta el tamaño del ícono */
+}
+
+/* Estilos para centrar h1 e idInfo */
+.HName {
+  text-align: center !important;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  margin-top: 4px;
+  margin-bottom: 1px;
+}
+
+.idInfo {
+  text-align: center; /* Centrar horizontalmente */
+  padding-bottom: 2px;
+  font-family: 'Poppins', sans-serif;
+  color: #868D95;
+  font-weight: 100;
+  margin-top: 1px;
+}
+
 /* Estilos para el botón Edit */
 .edit-button {
   border: 1.5px solid #7163f1; /* Reduce el grosor del borde */
@@ -73,3 +91,96 @@
   color: white;
 }
 
+/* Estilos para el contenedor de archivos */
+/* Updated styles for the file-input-wrapper to align the span at the start and the icon at the end */
+.file-input-wrapper {
+  display: flex;
+  align-items: center; /* Aligns items vertically centered */
+  justify-content: space-between; /* Pushes the span and icon to opposite ends */
+  width: 90%;
+  margin: 20px auto;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.850rem;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.file-input-wrapper:hover {
+  border-color: #7163f1;
+  background-color: #f0f0f0;
+}
+
+.file-upload {
+  display: none; /* Hide the file input */
+}
+
+.file-upload-label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.upload-text {
+  flex-grow: 1; /* Ensures the text spans across the available space */
+  text-align: left; /* Aligns text to the left */
+  padding-left: 10px; /* Optional padding to create space between the border and the text */
+}
+
+.upload-icon {
+  width: 12%;
+  height: auto;
+  padding-right: 10px; /* Padding to push the icon slightly inward */
+}
+
+
+/* Estilos para inputs de archivo individuales */
+.input-file-container {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.input-file {
+  width: 100%;
+  padding: 3.5%;
+  height: 24px;
+  border-radius: 0.850rem;
+  border: 0.15rem solid #e0e0e0;
+  font-size: 0.875rem;
+  font-family: 'Poppins', sans-serif;
+  color: #b0b0b0; /* Color gris claro cuando no está enfocado */
+}
+
+.input-file:focus {
+  border-color: #7163f1;
+  outline: none;
+  color: #000; /* Cambia a color negro cuando está enfocado */
+}
+
+.input-file::file-selector-button {
+  display: none; /* Oculta el botón de selección por defecto */
+}
+
+.upload-label {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background-color: #7163f1;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+}
+
+.upload-label:hover {
+  background-color: #5145ba;
+}

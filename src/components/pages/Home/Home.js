@@ -2,20 +2,19 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import config from '../../../server/config/config'; // Importa la configuración
 import "./styles/Home.css";
-import mockData from "../../../data/mockData.json";
 import { RxDashboard } from "react-icons/rx";
 import NotificationIcon from "../../../assets/images/Home/notificationIcon.png";
-import { BsArrowRightCircle } from "react-icons/bs";
-import MessageIcon from "../../../assets/images/Home/Message.png";
-import MessageNIcon from "../../../assets/images/Home/MessageN.png";
 import { IoIosArrowForward } from "react-icons/io";
 import CustomBottomNavigation from "../../widgets/CustomBottomNavigation";
 import { useNavigate } from "react-router-dom";
-import { useUser } from '../../context/UserContext'; // Importa el contexto
+import { useUser } from '../../context/UserContext';
+import MessageIcon from "../../../assets/images/Home/Message.png";
+import MessageNIcon from "../../../assets/images/Home/MessageN.png";
+import config from '../../../server/config/config';
 
 const HomeView = () => {
-  const options = { weekday: "long", day: "numeric" };
-  const malaysiaTime = new Date().toLocaleDateString("en-MY", options);
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { userType, userEmail } = useUser(); // Obtén userType del contexto
   const [projects, setProjects] = useState([]); // Estado para almacenar los proyectos
@@ -56,6 +55,10 @@ const HomeView = () => {
   };
 
   const renderContent = () => {
+    if (loading) {
+      return <p>Loading...</p>;
+    }
+
     if (userType === 1) {
       return (
         <>
@@ -63,7 +66,7 @@ const HomeView = () => {
             <button className="home-button left">
               <RxDashboard />
             </button>
-            <h2>{malaysiaTime}</h2>
+            <h2>{new Date().toLocaleDateString("en-MY", { weekday: "long", day: "numeric" })}</h2>
             <button className="home-button right">
               <img src={NotificationIcon} alt="Notification" className="notification-image" />
             </button>
@@ -77,8 +80,7 @@ const HomeView = () => {
               <div className="carousel">
                 <div className="participated-project">
                   <h2>Pending Projects</h2>
-                  <p>3 Pending </p>
-                  <p>projects</p>
+                  <p>3 Pending projects</p>
                   <div className="project-details">
                     <div className="project-images">
                       <img src="https://via.placeholder.com/50" alt="Project 1" className="project-image" />
@@ -107,7 +109,7 @@ const HomeView = () => {
                 All Projects
                 <IoIosArrowForward className="all-projects-icon" onClick={handleViewAllProjects} />
               </h2>
-              {limitedProjects.map((project, index) => (
+              {projects.slice(0, 3).map((project, index) => (
                 <div className="project-card" key={index}>
                   <p>{project.quotations} quotation(s) uploaded</p>
                   <h3>{project.name}</h3>
@@ -121,7 +123,7 @@ const HomeView = () => {
               ))}
             </div>
           </div>
-          <CustomBottomNavigation hasAnyMessage={hasAnyMessage} name="Home" />
+          <CustomBottomNavigation hasAnyMessage={projects.some(project => project.HasMessages)} name="Home" />
         </>
       );
     } else if (userType === 0) {
@@ -131,7 +133,7 @@ const HomeView = () => {
             <button className="home-button left">
               <RxDashboard />
             </button>
-            <h2>{malaysiaTime}</h2>
+            <h2>{new Date().toLocaleDateString("en-MY", { weekday: "long", day: "numeric" })}</h2>
             <button className="home-button right">
               <img src={NotificationIcon} alt="Notification" className="notification-image" />
             </button>
@@ -144,8 +146,8 @@ const HomeView = () => {
             <div className="carousel-container">
               <div className="carousel">
                 <div className="participated-project">
-                  <h2>Participated Project</h2>
-                  <p>Projects you have quoted or chatted with</p>
+                  <h2>Pending Projects</h2>
+                  <p>3 Pending projects</p>
                   <div className="project-details">
                     <div className="project-images">
                       <img src="https://via.placeholder.com/50" alt="Project 1" className="project-image" />
@@ -188,15 +190,15 @@ const HomeView = () => {
               ))}
             </div>
           </div>
-          <CustomBottomNavigation hasAnyMessage={hasAnyMessage} name="Home" />
+          <CustomBottomNavigation hasAnyMessage={projects.some(project => project.HasMessages)} name="Home" />
         </>
       );
     } else {
-      return <p>Loading...</p>; // Opcional: mostrar un mensaje de carga si no hay userType
+      return <p>Invalid user type</p>;
     }
   };
 
-  return <div className="Home">{renderContent()}</div>;
+  return <div className="HomeView">{renderContent()}</div>;
 };
 
 export default HomeView;

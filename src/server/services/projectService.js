@@ -152,6 +152,22 @@ const addQuote = (idUser, idProject, paymentTerms, warranty, note, price, callba
     });
 };
 
+const addProject = (name, description, idUser, image1, image2, image3, pdf1, pdf2, callback) => {
+    const query = `
+        INSERT INTO projects (name, description, id_user, image1, image2, image3, pdf1, pdf2)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+    
+    connection.query(query, [name, description, idUser, image1, image2, image3, pdf1, pdf2], (err, results) => {
+        if (err) {
+            console.error('Error executing query:', err.stack);
+            return callback(err, null);
+        }
+        console.log('Project added:', results);
+        callback(null, results);
+    });
+};
+
 
 // Puedes añadir más funciones para otros endpoints relacionados con proyectos
 
@@ -163,4 +179,5 @@ module.exports = {
     getMessagesByProject,
     addMessageToProject,
     addQuote,
+    addProject,
 };

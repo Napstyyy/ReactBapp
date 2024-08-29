@@ -1,5 +1,5 @@
 const express = require('express');
-const { getProjectsWithQuotes, getMessagesByProject, addMessageToProject, getAllProjects, getOneProject, getProjectQuotes, addProject } = require('../services/projectService');
+const { getProjectsWithQuotes, getMessagesByProject, addMessageToProject, getAllProjects, getOneProject, getProjectQuotes, addProject, getProjectById } = require('../services/projectService');
 
 const router = express.Router();
 
@@ -107,6 +107,23 @@ router.post('/addProject', (req, res) => {
         }
 
         res.status(201).json({ message: 'project added successfully', id: result.insertId });
+    });
+});
+
+router.get('/getProject', (req, res) => {
+  const id_project = req.query.id_project;
+
+  if (!id_project) {
+    return res.status(400).json({ error: 'id_project is required' });
+  }
+
+  getProjectById(id_project)
+    .then(project => {
+      res.json(project);
+    })
+    .catch(error => {
+      console.error('Error fetching project:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
     });
 });
 

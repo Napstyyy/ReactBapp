@@ -25,25 +25,25 @@ html, body {
   overflow: hidden; /* Prevent overflow */
 }
 
-header {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important; /* Asegura que los botones estén en los extremos */
-  width: 100% !important;
-  position: relative !important;
-  margin-top: 4% !important;
-  padding-bottom: 4% !important;
+.homeHeader {
+  display: flex ;
+  align-items: center ;
+  justify-content: space-between; /* Asegura que los botones estén en los extremos */
+  width: 100% ;
+  position: relative ;
+  margin-top: 10%;
+  padding-bottom: 20%;
 }
 
 .home-button.left {
-  margin-left: 8% !important;
+  margin-left: 10%;
 }
 
 .home-button.right {
-  margin-right: 8% !important;
+  margin-right: 10%;
 }
 
-header h2 {
+.HeaderText {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);

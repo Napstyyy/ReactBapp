@@ -61,7 +61,7 @@ const AllProjectView = () => {
 
   return (
     <div className="Home">
-      <header>
+      <div className="homeHeader">
         <button className="home-button left">
           <RxDashboard />
         </button>
@@ -73,7 +73,7 @@ const AllProjectView = () => {
             className="notification-image"
           />
         </button>
-      </header>
+      </div>
       <div className="Container">
        {/* Barra de búsqueda */}
         <div className="search-bar">

@@ -168,6 +168,19 @@ const addProject = (name, description, idUser, image1, image2, image3, pdf1, pdf
     });
 };
 
+const getProjectById = (id_project) => {
+  return new Promise((resolve, reject) => {
+    const query = 'SELECT * FROM projects WHERE id_project = ?';
+
+    connection.query(query, [id_project], (error, results) => {
+      if (error) {
+        return reject(error);
+      }
+      resolve(results); // Los resultados se devuelven en formato JSON automáticamente
+    });
+  });
+};
+
 
 // Puedes añadir más funciones para otros endpoints relacionados con proyectos
 
@@ -180,4 +193,5 @@ module.exports = {
     addMessageToProject,
     addQuote,
     addProject,
+    getProjectById,
 };

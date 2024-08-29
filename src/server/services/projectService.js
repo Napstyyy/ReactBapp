@@ -31,7 +31,7 @@ const getOneProject = (projectId, callback) => {
             project.image2 = project.image2 ? project.image2.toString('base64') : null;
             project.image3 = project.image3 ? project.image3.toString('base64') : null;
         }
-        
+
 
         console.log('Project Details:', results);
         callback(null, results);
@@ -136,6 +136,23 @@ const addMessageToProject = (projectId, text, messageFile, callback) => {
     });
 };
 
+const addQuote = (idUser, idProject, paymentTerms, warranty, note, price, callback) => {
+    const query = `
+        INSERT INTO quotes (id_user, id_project, payment_terms, warranty, note, price)
+        VALUES (?, ?, ?, ?, ?, ?)
+    `;
+    
+    connection.query(query, [idUser, idProject, paymentTerms, warranty, note, price], (err, results) => {
+        if (err) {
+            console.error('Error executing query:', err.stack);
+            return callback(err, null);
+        }
+        console.log('Quote added:', results);
+        callback(null, results);
+    });
+};
+
+
 // Puedes añadir más funciones para otros endpoints relacionados con proyectos
 
 module.exports = {
@@ -145,4 +162,5 @@ module.exports = {
     getProjectsWithQuotes,
     getMessagesByProject,
     addMessageToProject,
+    addQuote,
 };

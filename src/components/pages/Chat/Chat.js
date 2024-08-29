@@ -88,7 +88,7 @@ const ChatView = () => {
 
   return (
     <div className="chat-container">
-      <header>
+      <div className="homeHeader">
         <button className="home-button left">
           <RxDashboard />
         </button>
@@ -100,7 +100,7 @@ const ChatView = () => {
             className="notification-image"
           />
         </button>
-      </header>
+      </div>
       <div className="Messages-Container">
         {chats.map((message) => {
           // Asegúrate de que el texto no está vacío y tiene al menos un carácter

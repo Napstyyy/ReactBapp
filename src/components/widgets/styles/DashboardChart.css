@@ -1,0 +1,56 @@
+.dashboard-chart-container {
+  padding: 2vh 3vw;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 90%;
+  max-width: 500px;
+  margin-bottom: 3vh;
+}
+
+.dashboard-chart-title {
+  font-family: Arial;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14.52px;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.dashboard-chart-subtitle {
+  text-align: center;
+  color: #888;
+  margin-bottom: 2vh;
+  font-size: 1rem;
+}
+
+.dashboard-chart-summary {
+  margin-top: 2vh;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.dashboard-chart-summary p {
+  margin: 0;
+  padding: 0.5vh 0;
+}
+
+.dashboard-chart-summary strong {
+  font-weight: bold;
+}
+
+.dashboard-chart-price-summary {
+  width: 200px;
+  font-family: Arial, sans-serif;
+}
+
+.dashboard-chart-price-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.dashboard-chart-price-item:nth-child(1),
+.dashboard-chart-price-item:nth-child(2) {
+  border-bottom: 1px solid #e0e0e0;
+}

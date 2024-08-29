@@ -14,7 +14,9 @@ import ProfileView from './components/pages/Profile/Profile.js';
 import ProjectPageView from './components/pages/ProjectPage/ProjectPage.js';
 import QuotationGenerator from './components/pages/QuotationGenerator/QuotationGenerator.js';
 import AddProject from './components/pages/AddProject/AddProject.js'
+import ComparisonView from './components/pages/Comparison/Comparison.js';
 import { UserProvider } from './components/context/UserContext.js';
+import ProjectPageManager from './components/pages/ProjectPageManager/ProjectPageManager.js';
 
 const App = () => {
   return (
@@ -32,8 +34,10 @@ const App = () => {
          <Route path="/Chat" element={<Layout><ChatView /></Layout>} />
         <Route path="/Profile" element={<Layout><ProfileView /></Layout>} />
         <Route path="/ProjectPage" element={<ProjectPageView />} />
+        <Route path="/ProjectPageManager" element={<ProjectPageManager />} />
         <Route path="/QuotationGenerator" element={<QuotationGenerator />} />
         <Route path="/AddProject" element={<AddProject />} />
+        <Route path="/Comparison" element={<ComparisonView />} />
       </Routes>
     </Router>
     </UserProvider>

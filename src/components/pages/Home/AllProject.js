@@ -51,6 +51,10 @@ const AllProjectView = () => {
     navigate("/all-projects"); // Redirecciona a la página de "All Projects"
   };
 
+  const projectInfo = (proyectId) => {
+    navigate("/ProjectPage", { state: { proyectId: proyectId, name: proyectId } });
+  };
+
   const projectChat = (proyectId) => {
     navigate("/Chat", { state: { proyectId: proyectId, name: proyectId } });
   };
@@ -111,7 +115,7 @@ const AllProjectView = () => {
           {filteredProjects.map((project, index) => (
             <div className="project-card" key={index}>
               <p>{project.quotations} quotation(s) uploaded</p>
-              <h3>{project.name}</h3>
+              <h3 onClick={() => projectInfo(project.id_project)}>{project.name}</h3>
               <p>Average price @ {project.averagePrice}</p>
               {project.HasMessages ? (
                 <img src={MessageNIcon} alt="Message Notification" onClick={() => projectChat(project.id_project)} />

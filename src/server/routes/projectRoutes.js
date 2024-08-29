@@ -1,5 +1,5 @@
 const express = require('express');
-const { getProjectsWithQuotes,getMessagesByProject,addMessageToProject,getAllProjects,getOneProject } = require('../services/projectService');
+const { getProjectsWithQuotes, getMessagesByProject, addMessageToProject, getAllProjects, getOneProject, getProjectQuotes,addQuote } = require('../services/projectService');
 
 const router = express.Router();
 
@@ -29,10 +29,23 @@ router.get('/getProjects', (req, res) => {
     });
 });
 
+router.get('/getProjectQuotes/:projectId', (req, res) => {
+    const projectId = req.params.projectId;
+    getProjectQuotes(projectId, (err, quotes) => {
+        console.log(projectId);
+        if (err) {
+            console.error('Error fetching quotes: ', err.stack);
+            return res.status(500).json({ message: 'Database error' });
+        }
+
+        res.status(200).json(quotes);
+    });
+})
+
 router.get('/getOneProject/:projectId', (req, res) => {
     const projectId = req.params.projectId;
-
-    getOneProject(projectId,(err, projects) => {
+    console.log(projectId);
+    getOneProject(projectId, (err, projects) => {
         if (err) {
             console.error('Error fetching project:', err.stack);
             return res.status(500).json({ message: 'Database error' });
@@ -70,5 +83,19 @@ router.post('/messages/:projectId', (req, res) => {
         res.status(201).json({ message: 'Message added successfully', id: result.insertId });
     });
 });
+
+router.post('/addQuote', (req, res) => {
+    const { id_user, id_project, payment_terms, warranty, note, price } = req.body;
+    console.log(id_user, id_project, payment_terms, warranty, note, price);
+    addQuote(id_user, id_project, payment_terms, warranty, note, price, (err, result) => {
+        if (err) {
+            console.error('Error adding quote:', err.stack);
+            return res.status(500).json({ message: 'Database error' });
+        }
+
+        res.status(201).json({ message: 'Quote added successfully', id: result.insertId });
+    });
+});
+
 
 module.exports = router;

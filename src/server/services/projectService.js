@@ -14,16 +14,26 @@ const getAllProjects = (callback) => {
     });
 };
 
-const getOneProject = (projectId,callback) => {
+const getOneProject = (projectId, callback) => {
     const query = `
-    SELECT * from projects where projects.id_project = ?
+    SELECT * FROM projects WHERE projects.id_project = ?
     `;
     connection.query(query, [projectId], (err, results) => {
         if (err) {
             console.error('Error executing query:', err.stack);
             return callback(err, null);
         }
-        console.log('list of Projects:', results)
+
+        // Convertir las imágenes a base64
+        if (results.length > 0) {
+            const project = results[0];
+            project.image1 = project.image1 ? project.image1.toString('base64') : null;
+            project.image2 = project.image2 ? project.image2.toString('base64') : null;
+            project.image3 = project.image3 ? project.image3.toString('base64') : null;
+        }
+
+
+        console.log('Project Details:', results);
         callback(null, results);
     });
 };
@@ -57,6 +67,36 @@ const getProjectsWithQuotes = (userId, callback) => {
         callback(null, results);
     });
 };
+
+const getProjectQuotes = (projectId, callback) => {
+    const query = `
+    SELECT 
+        q.id_quote,
+	q.id_project,
+        q.payment_terms,
+        q.warranty,
+        q.note,
+        q.price,
+        u.name
+    FROM
+        quotes q
+    JOIN
+	projects p ON p.id_project = q.id_project
+    JOIN
+    	users u ON u.email = q.id_user
+    WHERE
+	p.id_project = ?
+    `;
+
+    connection.query(query, [projectId], (err, results) => {
+        if (err) {
+            console.error('Error executing query: ', err.stack);
+            return callback(err, null);
+        }
+        console.log('Quotes per project: ', results);
+        callback(null, results);
+    })
+}
 
 const getMessagesByProject = (projectId, callback) => {
     const query = `
@@ -96,12 +136,31 @@ const addMessageToProject = (projectId, text, messageFile, callback) => {
     });
 };
 
+const addQuote = (idUser, idProject, paymentTerms, warranty, note, price, callback) => {
+    const query = `
+        INSERT INTO quotes (id_user, id_project, payment_terms, warranty, note, price)
+        VALUES (?, ?, ?, ?, ?, ?)
+    `;
+    
+    connection.query(query, [idUser, idProject, paymentTerms, warranty, note, price], (err, results) => {
+        if (err) {
+            console.error('Error executing query:', err.stack);
+            return callback(err, null);
+        }
+        console.log('Quote added:', results);
+        callback(null, results);
+    });
+};
+
+
 // Puedes añadir más funciones para otros endpoints relacionados con proyectos
 
 module.exports = {
     getAllProjects,
     getOneProject,
+    getProjectQuotes,
     getProjectsWithQuotes,
     getMessagesByProject,
     addMessageToProject,
+    addQuote,
 };

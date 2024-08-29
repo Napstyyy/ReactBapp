@@ -13,7 +13,7 @@ import MessageNIcon from "../../../assets/images/Home/MessageN.png";
 
 const HomeView = () => {
   const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
+  //const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { userType, userEmail } = useUser(); // Obtén userType del contexto
   console.log('UserType:', userType); // Verifica el valor de userType
@@ -52,10 +52,10 @@ const HomeView = () => {
     navigate("/Chat", { state: { proyectId: proyectId, name: proyectId } });
   };
 
-  const renderContent = () => {
-    if (loading) {
+   const renderContent = () => {
+    /*if (loading) {
       return <p>Loading...</p>;
-    }
+    }*/
 
     if (userType === 1) {
       return (
@@ -175,9 +175,8 @@ const HomeView = () => {
                 <IoIosArrowForward className="all-projects-icon" onClick={handleViewAllProjects} />
               </h2>
               {limitedProjects.map((project, index) => (
-                console.log(project),
-                <div className="project-card" key={index} onClick={() => projectInfo(project.id_project)}>
-                  <h3>{project.project_name}</h3>
+                <div className="project-card" key={index} >
+                  <h3 onClick={() => projectInfo(project.id_project)}>{project.project_name}</h3>
                   <p>Average price @ {project.payment_terms}</p>
                   {project.HasMessages ? (
                     <img src={MessageNIcon} alt="Message Notification" onClick={() => projectChat(project.id_project)} />

@@ -14,16 +14,26 @@ const getAllProjects = (callback) => {
     });
 };
 
-const getOneProject = (projectId,callback) => {
+const getOneProject = (projectId, callback) => {
     const query = `
-    SELECT * from projects where projects.id_project = ?
+    SELECT * FROM projects WHERE projects.id_project = ?
     `;
     connection.query(query, [projectId], (err, results) => {
         if (err) {
             console.error('Error executing query:', err.stack);
             return callback(err, null);
         }
-        console.log('list of Projects:', results)
+
+        // Convertir las imágenes a base64
+        if (results.length > 0) {
+            const project = results[0];
+            project.image1 = project.image1 ? project.image1.toString('base64') : null;
+            project.image2 = project.image2 ? project.image2.toString('base64') : null;
+            project.image3 = project.image3 ? project.image3.toString('base64') : null;
+        }
+        
+
+        console.log('Project Details:', results);
         callback(null, results);
     });
 };

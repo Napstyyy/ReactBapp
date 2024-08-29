@@ -1,5 +1,5 @@
 const express = require('express');
-const { getProjectsWithQuotes,getMessagesByProject,addMessageToProject,getAllProjects,getOneProject } = require('../services/projectService');
+const { getProjectsWithQuotes, getMessagesByProject, addMessageToProject, getAllProjects, getOneProject, getProjectQuotes } = require('../services/projectService');
 
 const router = express.Router();
 
@@ -29,10 +29,23 @@ router.get('/getProjects', (req, res) => {
     });
 });
 
+router.get('/getProjectQuotes/:projectId', (req, res) => {
+    const projectId = req.params.projectId;
+    getProjectQuotes(projectId, (err, quotes) => {
+        console.log(projectId);
+        if (err) {
+            console.error('Error fetching quotes: ', err.stack);
+            return res.status(500).json({ message: 'Database error' });
+        }
+
+        res.status(200).json(quotes);
+    });
+})
+
 router.get('/getOneProject/:projectId', (req, res) => {
     const projectId = req.params.projectId;
     console.log(projectId);
-    getOneProject(projectId,(err, projects) => {
+    getOneProject(projectId, (err, projects) => {
         if (err) {
             console.error('Error fetching project:', err.stack);
             return res.status(500).json({ message: 'Database error' });

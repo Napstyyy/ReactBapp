@@ -68,6 +68,36 @@ const getProjectsWithQuotes = (userId, callback) => {
     });
 };
 
+const getProjectQuotes = (projectId, callback) => {
+    const query = `
+    SELECT 
+        q.id_quote,
+	q.id_project,
+        q.payment_terms,
+        q.warranty,
+        q.note,
+        q.price,
+        u.name
+    FROM
+        quotes q
+    JOIN
+	projects p ON p.id_project = q.id_project
+    JOIN
+    	users u ON u.email = q.id_user
+    WHERE
+	p.id_project = ?
+    `;
+
+    connection.query(query, [projectId], (err, results) => {
+        if (err) {
+            console.error('Error executing query: ', err.stack);
+            return callback(err, null);
+        }
+        console.log('Quotes per project: ', results);
+        callback(null, results);
+    })
+}
+
 const getMessagesByProject = (projectId, callback) => {
     const query = `
         SELECT 
@@ -111,6 +141,7 @@ const addMessageToProject = (projectId, text, messageFile, callback) => {
 module.exports = {
     getAllProjects,
     getOneProject,
+    getProjectQuotes,
     getProjectsWithQuotes,
     getMessagesByProject,
     addMessageToProject,

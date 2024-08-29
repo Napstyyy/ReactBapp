@@ -26,21 +26,21 @@ html, body {
 }
 
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Asegura que los botones estén en los extremos */
-  width: 100%;
-  position: relative;
-  margin-top: 4%;
-  padding-bottom: 4%;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important; /* Asegura que los botones estén en los extremos */
+  width: 100% !important;
+  position: relative !important;
+  margin-top: 4% !important;
+  padding-bottom: 4% !important;
 }
 
 .home-button.left {
-  margin-left: 8%;
+  margin-left: 8% !important;
 }
 
 .home-button.right {
-  margin-right: 8%;
+  margin-right: 8% !important;
 }
 
 header h2 {

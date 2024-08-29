@@ -3,7 +3,7 @@ import "../Auth/styles/SignUp.css";
 import { SlArrowLeft } from "react-icons/sl";
 import { useNavigate } from "react-router-dom";
 import CustomBottomNavigation from "../../widgets/CustomBottomNavigation";
-import "./styles/AddProject.css";
+import "./styles/EditProject.css";
 import roundedLogo from "../../../assets/images/RoundedLogo.png";
 import { useUser } from "../../context/UserContext";
 import config from "../../../server/config/config";
@@ -327,13 +327,47 @@ const AddProjectView = () => {
         </label>
       )}
     </div>
-
+        <div className="file-input-wrapper-image">
+      <input
+        type="file"
+        id="imageUpload"
+        name="image"
+        accept="image/*"
+        className="file-upload-input-image"
+        onChange={handleImageUpload}
+      />
+      {imagePreview ? (
+        <div className="image-preview-container-image">
+          <img src={imagePreview} alt="Preview" className="image-preview-image" />
+          <img
+            src={trashIcon}
+            alt="Remove"
+            className="remove-icon-image"
+            onClick={handleRemoveImage}
+          />
+        </div>
+      ) : (
+        <label htmlFor="imageUpload" className="file-upload-label-image">
+          <img src={cameraIcon} alt="Camera Icon" className="camera-icon-image" />
+          <span className="upload-text-image">
+            <span className="highlight-text-image">Click to Upload</span> or open your camera (Max. File size: 100 MB)
+          </span>
+        </label>
+      )}
+    </div>
         <button
-          className="sign-in-button-ap"
+          className="update-project-button"
           onClick={handleSaveClick}
           disabled={!isEditable}
         >
-          Add Project
+          Update Project
+        </button>
+        <button
+          className="requote-button"
+          onClick={handleSaveClick}
+          disabled={!isEditable}
+        >
+          Requote (All Quote Will Be Deleted)
         </button>
       </div>
     </div>

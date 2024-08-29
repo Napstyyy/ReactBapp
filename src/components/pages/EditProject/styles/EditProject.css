@@ -211,10 +211,23 @@ header h2 {
 }
 
 
-.sign-in-button-ap {
+.update-project-button {
   width: 100%;
   padding: 3.75%; /* 15px converted to percentage */
-  background-color: #7163f1;
+  background-color: #2D2D36;
+  border: none;
+  border-radius: 1rem; /* 30px converted to rem */
+  color: white;
+  font-size: 1rem; /* 16px converted to rem */
+  cursor: pointer;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
+  margin-bottom: 4%;
+}
+
+.requote-button {
+  width: 100%;
+  padding: 3.75%; /* 15px converted to percentage */
+  background-color: #F36E70;
   border: none;
   border-radius: 1rem; /* 30px converted to rem */
   color: white;

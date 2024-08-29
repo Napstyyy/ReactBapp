@@ -1,7 +1,7 @@
 .imageContainer {
   width: 100vw; /* Ancho completo de la pantalla */
   position: relative;
-  height: 10%; /* Reducir la altura a la mitad de la altura de la ventana */
+  height: 30vh; /* Reducir la altura a la mitad de la altura de la ventana */
   margin: 0 auto;
 }
 
@@ -17,13 +17,16 @@
   margin-top: 0;
   position: relative;
   top: 0;
+  
   max-height: 80vh; /* Limita la altura de la tarjeta para que no ocupe toda la pantalla */
   overflow-y: auto; /* Hacer que el contenido sea desplazable */
 }
 
+
 .card {
   margin-top: 0px;
   border-radius: 8px;
+  
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   overflow: hidden;
@@ -98,6 +101,64 @@
   background-color: #e0e0e0;
 }
 
+.file-input-wrapper-apr {
+  display: flex;
+  align-items: center;  
+  justify-content: space-between; 
+  width: 90%;
+  margin: 20px auto;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.850rem;
+  background-color: #f9f9f900;
+  cursor: pointer;
+}
+
+.file-input-wrapper-apr:hover {
+  border-color: #7163f1;
+  background-color: #f0f0f0;
+}
+
+.file-uploadr {
+  display: none; 
+}
+
+.file-upload-labelr {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.label-apr{
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #888888;
+}
+
+.upload-text-apr {
+  flex-grow: 1; 
+  text-align: left; 
+  padding-left: 12%; 
+  color: #002055;
+  font-weight: 600;
+}
+
+.upload-iconr {
+  width: 10%;
+  height: auto;
+  padding-right: 10px;  
+}
+
+.upload-icon-rr {
+  width: 10%;
+  height: auto;
+}
+
 .uploadButtonContainer {
   
   display: flex;
@@ -129,6 +190,8 @@
   color: #303f9f;
   cursor: pointer;
 }
+
+
 
 
 .quotationButton {

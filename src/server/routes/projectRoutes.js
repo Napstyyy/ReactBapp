@@ -1,5 +1,5 @@
 const express = require('express');
-const { getProjectsWithQuotes, getMessagesByProject, addMessageToProject, getAllProjects, getOneProject, getProjectQuotes } = require('../services/projectService');
+const { getProjectsWithQuotes, getMessagesByProject, addMessageToProject, getAllProjects, getOneProject, getProjectQuotes,addQuote } = require('../services/projectService');
 
 const router = express.Router();
 
@@ -83,5 +83,19 @@ router.post('/messages/:projectId', (req, res) => {
         res.status(201).json({ message: 'Message added successfully', id: result.insertId });
     });
 });
+
+router.post('/addQuote', (req, res) => {
+    const { id_user, id_project, payment_terms, warranty, note, price } = req.body;
+    console.log(id_user, id_project, payment_terms, warranty, note, price);
+    addQuote(id_user, id_project, payment_terms, warranty, note, price, (err, result) => {
+        if (err) {
+            console.error('Error adding quote:', err.stack);
+            return res.status(500).json({ message: 'Database error' });
+        }
+
+        res.status(201).json({ message: 'Quote added successfully', id: result.insertId });
+    });
+});
+
 
 module.exports = router;

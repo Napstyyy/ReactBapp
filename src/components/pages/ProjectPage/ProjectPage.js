@@ -45,8 +45,8 @@ const ProjectDetail = () => {
     navigate("/Chat", { state: { proyectId: proyectId, name: proyectId } });
   };
 
-  const QuotationGenerator = () => {
-    navigate("/QuotationGenerator");
+  const QuotationGenerator = (proyectId) => {
+    navigate("/QuotationGenerator",{ state: { proyectId: proyectId, name: proyectId } });
   };
 
   
@@ -117,7 +117,7 @@ quotation generator.
                 </Button>
               </Grid>
               <Grid item xs={12} sm={6}>
-                <button className="quotationButton" onClick={() => QuotationGenerator()}>
+                <button className="quotationButton" onClick={() => QuotationGenerator(project.id_project)}>
                   Use Quotation Generator
                 </button>
               </Grid>

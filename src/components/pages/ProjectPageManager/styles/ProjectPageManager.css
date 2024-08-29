@@ -195,67 +195,62 @@
 	color: #3f51b5;
 }
 
-.file-input-wrapper-ap {
-	display: flex;
-	align-items: center;
-	/* Aligns items vertically centered */
-	justify-content: space-between;
-	/* Pushes the span and icon to opposite ends */
-	width: 90%;
-	margin: 20px auto;
-	padding: 10px;
-	border: 1px solid #e0e0e0;
-	border-radius: 0.850rem;
-	background-color: #f9f9f900;
-	cursor: pointer;
+
+.project-manager-file-input-wrapper {
+  display: flex;
+  align-items: center; /* Aligns items vertically centered */
+  justify-content: space-between; /* Pushes the span and icon to opposite ends */
+  width: 90%;
+  margin: 20px auto;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.850rem;
+  background-color: #f9f9f900;
+  cursor: pointer;
 }
 
-.file-input-wrapper-ap:hover {
-	border-color: #7163f1;
-	background-color: #f0f0f0;
+.project-manager-file-input-wrapper:hover {
+  border-color: #7163f1;
+  background-color: #f0f0f0;
 }
 
-.file-upload {
-	display: none;
-	/* Hide the file input */
+.project-manager-file-upload {
+  display: none; /* Hide the file input */
 }
 
-.file-upload-label {
-	display: flex;
-	align-items: center;
-	width: 100%;
-	font-family: 'Poppins', sans-serif;
-	font-size: 0.875rem;
-	color: #333;
-	cursor: pointer;
+.project-manager-file-upload-label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  color: #333;
+  cursor: pointer;
 }
 
-.label-ap {
-	display: block;
-	margin-bottom: 8px;
-	font-size: 14px;
-	color: #888888;
+.project-manager-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #888888;
 }
 
-.upload-text-ap {
-	flex-grow: 1;
-	/* Ensures the text spans across the available space */
-	text-align: left;
-	/* Aligns text to the left */
-	padding-left: 12%;
-	/* Optional padding to create space between the border and the text */
-	color: #002055;
-	font-weight: 600;
+.project-manager-upload-text {
+  flex-grow: 1; /* Ensures the text spans across the available space */
+  text-align: left; /* Aligns text to the left */
+  padding-left: 12%; /* Optional padding to create space between the border and the text */
+  color: #002055;
+  font-weight: 600;
 }
 
-.upload-icon {
-	width: 10%;
-	height: auto;
-	padding-right: 10px;
-	/* Padding to push the icon slightly inward */
+.project-manager-upload-icon {
+  width: 10%;
+  height: auto;
+  padding-right: 10px; /* Padding to push the icon slightly inward */
 }
 
-.upload-icon-r {
-	width: 10%;
-	height: auto;
+.project-manager-upload-icon-r {
+  width: 10%;
+  height: auto;
 }
+

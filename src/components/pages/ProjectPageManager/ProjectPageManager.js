@@ -1,13 +1,14 @@
 import React from "react";
 import Slider from 'react-slick';
 import { Button, Typography, Container, Grid } from '@mui/material';
-import { UploadFile, PictureAsPdf } from '@mui/icons-material';
+import { UploadFile } from '@mui/icons-material';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './styles/ProjectPageManager.css';
 import ProjectView from "../../../assets/images/Projects/ProjectView.png";
 import Edit from "../../../assets/images/Projects/Edit.svg";
 import DashboardChart from "../../widgets/DashboardChart";
+import pdflogo from "../../../assets/images/Projects/pdflogo.png";
 
 const ProjectPageManager = () => {
   const settings = {
@@ -61,35 +62,35 @@ const ProjectPageManager = () => {
               <div className="project-manager-documentsTitle">
                 Documents
               </div>
-              <Grid container spacing={1}>
-                <Grid item xs={12}>
-                  <Button startIcon={<PictureAsPdf />} fullWidth className="project-manager-docButton">
-                    Requirement _01
-                  </Button>
-                </Grid>
-                <Grid item xs={12}>
-                  <Button startIcon={<PictureAsPdf />} fullWidth className="project-manager-docButton">
-                    Floor Plan
-                  </Button>
-                </Grid>
-              </Grid>
-              <div className="file-input-wrapper-ap">
+              <div className="project-manager-file-input-wrapper">
                 <input
                   type="file"
-                  className="file-upload"
+                  className="project-manager-file-upload"
                   id="financial-statements"
                   accept="application/pdf"
                 />
-                <label htmlFor="financial-statements" className="file-upload-label">
-                  <img src={PictureAsPdf} alt="Upload File" className="upload-icon" />
-                  <span className="upload-text-ap">filename</span>
+                <label htmlFor="financial-statements" className="project-manager-file-upload-label">
+                  <img src={pdflogo} alt="Upload File" className="project-manager-upload-icon" />
+                  <span className="project-manager-upload-text">Requirement_01</span>
+                </label>
+              </div>
+              <div className="project-manager-file-input-wrapper">
+                <input
+                  type="file"
+                  className="project-manager-file-upload"
+                  id="financial-statements"
+                  accept="application/pdf"
+                />
+                <label htmlFor="financial-statements" className="project-manager-file-upload-label">
+                  <img src={pdflogo} alt="Upload File" className="project-manager-upload-icon" />
+                  <span className="project-manager-upload-text">Floor Plan</span>
                 </label>
               </div>
 
             </div>
-            <Button className="project-manager-submitButton">
+            <button className="project-manager-submitButton">
               Compare & Close Tender
-            </Button>
+            </button>
           </div>
         </Container>
       </div>

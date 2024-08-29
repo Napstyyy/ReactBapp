@@ -31,7 +31,7 @@ router.get('/getProjects', (req, res) => {
 
 router.get('/getOneProject/:projectId', (req, res) => {
     const projectId = req.params.projectId;
-
+    console.log(projectId);
     getOneProject(projectId,(err, projects) => {
         if (err) {
             console.error('Error fetching project:', err.stack);

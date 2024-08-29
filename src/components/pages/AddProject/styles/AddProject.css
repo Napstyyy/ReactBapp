@@ -1,0 +1,226 @@
+.add-project-wrapper-ap {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+  padding: 20px;
+  background-color: #ffffff;
+  overflow-y: auto; /* Habilita el scroll vertical */
+}
+
+header h2 {
+  margin-top: 3%;
+}
+
+.body-add-project {
+  margin-top: 20%;
+}
+
+.task-name-textarea {
+  height: 16px !important;
+  overflow: hidden; /* Oculta el contenido que se desborda */
+  resize: none;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #888888;
+}
+
+.upload-button-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.file-upload-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Para que los íconos estén alineados a los extremos */
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #1A2E57; /* Cambia el color del texto */
+  background-color: #ffffff;
+  box-sizing: border-box;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Agrega un sutil sombreado */
+}
+
+.upload-icon {
+  display: flex;
+  align-items: center;
+  margin-right: 8px; /* Añade un pequeño espacio entre el ícono y el texto */
+}
+
+.upload-button span {
+  text-align: center; /* Asegura que el texto esté centrado */
+}
+
+.delete-icon {
+  display: flex;
+  align-items: center;
+}
+
+.file-input-wrapper-ap {
+  display: flex;
+  align-items: center; /* Aligns items vertically centered */
+  justify-content: space-between; /* Pushes the span and icon to opposite ends */
+  width: 90%;
+  margin: 20px auto;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.850rem;
+  background-color: #f9f9f900;
+  cursor: pointer;
+}
+
+.file-input-wrapper-ap:hover {
+  border-color: #7163f1;
+  background-color: #f0f0f0;
+}
+
+.file-upload {
+  display: none; /* Hide the file input */
+}
+
+.file-upload-label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.label-ap{
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #888888;
+}
+
+.upload-text-ap {
+  flex-grow: 1; /* Ensures the text spans across the available space */
+  text-align: left; /* Aligns text to the left */
+  padding-left: 12%; /* Optional padding to create space between the border and the text */
+  color: #002055;
+  font-weight: 600;
+}
+
+.upload-icon {
+  width: 10%;
+  height: auto;
+  padding-right: 10px; /* Padding to push the icon slightly inward */
+}
+
+.upload-icon-r {
+  width: 10%;
+  height: auto;
+}
+
+.file-input-wrapper-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #E9F1FF; /* Borde continuo */
+  padding: 20px;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  border-radius: 10px;
+  width: 85%;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+.file-upload-input-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.file-upload-label-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.camera-icon-image {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+.upload-text-image {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #555; /* Color gris para el texto general */
+}
+
+.highlight-text-image {
+  color: #5A46FC; /* Color personalizado para "Click to Upload" */
+}
+
+.image-preview-container-image {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-preview-image {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.remove-icon-image {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  background-color: white; /* Fondo blanco para que se vea mejor sobre la imagen */
+  border-radius: 50%;
+  border: 2px solid #E9F1FF;
+}
+
+
+.sign-in-button-ap {
+  width: 100%;
+  padding: 3.75%; /* 15px converted to percentage */
+  background-color: #7163f1;
+  border: none;
+  border-radius: 1rem; /* 30px converted to rem */
+  color: white;
+  font-size: 1rem; /* 16px converted to rem */
+  cursor: pointer;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
+  margin-bottom: 16%;
+}
+

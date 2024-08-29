@@ -13,6 +13,7 @@ import ChatView from './components/pages/Chat/Chat.js';
 import ProfileView from './components/pages/Profile/Profile.js';
 import ProjectPageView from './components/pages/ProjectPage/ProjectPage.js';
 import QuotationGenerator from './components/pages/QuotationGenerator/QuotationGenerator.js';
+import AddProject from './components/pages/AddProject/AddProject.js'
 import { UserProvider } from './components/context/UserContext.js';
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/Profile" element={<Layout><ProfileView /></Layout>} />
         <Route path="/ProjectPage" element={<ProjectPageView />} />
         <Route path="/QuotationGenerator" element={<QuotationGenerator />} />
+        <Route path="/AddProject" element={<AddProject />} />
       </Routes>
     </Router>
     </UserProvider>

@@ -1,0 +1,135 @@
+body {
+  overflow-y: auto !important;
+}
+
+.comparison-page {
+  font-family: Arial, sans-serif;
+  padding: 5vh 2vw;
+  background-color: #FFF;
+  min-height: 100vh;
+  /* Ensure the container takes up at least the full viewport height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: auto !important;
+}
+
+.comparison-header {
+  text-align: center;
+  margin-bottom: 5vh;
+  width: 100%;
+}
+
+.comparison-header h1 {
+  margin-bottom: 3px;
+  color: rgba(0, 32, 85, 1);
+  font-weight: 800;
+  font-family: Poppins;
+  font-size: 20px;
+  line-height: 18px;
+}
+
+.comparison-header p {
+  font-family: Poppins;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  color: rgba(132, 138, 148, 1);
+}
+
+.comparison-subtitle {
+  text-align: left;
+  width: 90%;
+}
+
+.comparison-subtitle h1 {
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 18px;
+  text-align: left;
+  color: rgba(0, 32, 85, 1);
+  margin-bottom: 2rem;
+}
+
+.comparison-table-container {
+  width: 90%;
+  overflow-x: auto;
+  /* Enable horizontal scrolling */
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+  /* Prevent text wrapping */
+}
+
+.comparison-table th, 
+.comparison-table td {
+  padding: 10px 20px; /* Add horizontal padding to create spacing between columns */
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0; /* Separator line between rows */
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+  /* Remove the border from the last row */
+}
+
+.comparison-table-company-cell {
+  display: flex;
+  align-items: center;
+}
+
+.comparison-table-company-name {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  letter-spacing: 0.10000000149011612px;
+  text-align: left;
+}
+
+.comparison-table-price {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.10000000149011612px;
+  text-align: left;
+}
+
+.comparison-table-logo {
+  width: 20px;
+  height: 20px;
+}
+
+.comparison-table-payment-terms {
+  padding: 5px 10px;
+  border-radius: 20px;
+  color: white;
+}
+
+.payment-bg-green {
+  background-color: #D4F8D3;;
+  color: #000;
+}
+
+.payment-bg-yellow {
+  background-color: #FFF0BB;
+  color: #000;
+}
+
+.comparison-gradient-button {
+  margin-top: 3rem;
+  background-color: rgba(45, 45, 54, 1);
+  border: none;
+  border-radius: 15px;
+  color: white;
+  padding: 15px 40px;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px 13px 3rem rgba(84, 81, 214, 1);
+}

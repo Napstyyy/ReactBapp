@@ -1,0 +1,256 @@
+.project-manager-imageContainer {
+	width: 100vw;
+	/* Full screen width */
+	position: relative;
+	height: 10%;
+	/* Reduce height to a fraction of the viewport height */
+	margin: 0 auto;
+}
+
+.project-manager-image {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	/* Adjust the image to fit the container without cropping */
+}
+
+/* Ensure the main container is scrollable */
+.project-manager-container {
+	padding: 0% 1% 0 1%;
+	margin-top: 0;
+	position: relative;
+	top: 0;
+	max-height: 80vh;
+	/* Limit the height of the card so it doesn't take up the entire screen */
+	overflow-y: auto;
+	/* Make the content scrollable */
+}
+
+.project-manager-card {
+	margin-top: 0px;
+	border-radius: 8px;
+	box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+	background-color: #fff;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.project-manager-content {
+	padding: 15px;
+}
+
+.project-manager-titleContainer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.project-manager-title {
+	font-family: 'Poppins', sans-serif;
+	font-size: 20px;
+	font-weight: 600;
+	color: #002055;
+	margin-top: 10px;
+	margin-bottom: -4px;
+	text-align: left;
+}
+
+.project-manager-location {
+	font-family: 'Poppins', sans-serif;
+	font-weight: 400;
+	font-size: 12px;
+	/* Adjust size as needed */
+	margin-bottom: 20px;
+	color: #555;
+}
+
+.project-manager-descriptionTitle,
+.project-manager-documentsTitle {
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+	font-family: Poppins;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 14px;
+	text-align: left;
+	color: rgba(132, 138, 148, 1);
+}
+
+.project-manager-description {
+	font-family: Poppins;
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 14px;
+	text-align: left;
+	color: rgba(161, 158, 158, 1);
+}
+
+.project-manager-docButton {
+	display: flex;
+	justify-content: flex-start;
+	text-transform: none;
+	margin-bottom: 8px;
+	background-color: #f5f5f5;
+	color: #002055;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 300;
+	font-size: 14px;
+}
+
+.project-manager-docButton:hover {
+	background-color: #e0e0e0;
+}
+
+.project-manager-uploadButtonContainer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 0;
+	height: 40px;
+	border: 1px solid #E0E0E0;
+	border-radius: 8px;
+	background-color: #ffffff;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.project-manager-uploadButtonText {
+	font-family: 'Poppins', sans-serif;
+	font-weight: 700;
+	font-size: 16px;
+	color: #002055;
+	margin: 0 auto;
+	/* Center text horizontally */
+}
+
+.project-manager-uploadIcon,
+.project-manager-deleteIcon {
+	font-size: 24px;
+	color: #002055;
+}
+
+.project-manager-uploadIcon:hover,
+.project-manager-deleteIcon:hover {
+	color: #303f9f;
+	cursor: pointer;
+}
+
+.project-manager-quotationButton {
+	width: 100%;
+	padding: 12px;
+	border: none;
+	border-radius: 8px;
+	background-color: #D0CCF1;
+	color: #ffffff;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 500;
+	font-size: 16px;
+	text-align: center;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.project-manager-quotationButton:hover {
+	background-color: #756df4;
+}
+
+.project-manager-submitButton {
+	width: 90%;
+	padding: 12px;
+	border: none;
+	border-radius: 8px;
+	background-color: rgba(117, 110, 243, 1);
+	;
+	color: #ffffff;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 500;
+	font-size: 16px;
+	text-align: center;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	margin-bottom: 3rem;
+}
+
+.project-manager-submitButton:hover {
+	background-color: #2a2a3c;
+	/* Background color on hover */
+}
+
+.project-manager-slick-dots {
+	bottom: 10px;
+}
+
+.project-manager-slick-dots li {
+	margin: 0 -4px;
+}
+
+.project-manager-slick-dots li button:before {
+	font-size: 8px;
+	color: #ffffff;
+}
+
+.project-manager-slick-dots li.slick-active button:before {
+	color: #3f51b5;
+}
+
+
+.project-manager-file-input-wrapper {
+  display: flex;
+  align-items: center; /* Aligns items vertically centered */
+  justify-content: space-between; /* Pushes the span and icon to opposite ends */
+  width: 90%;
+  margin: 20px auto;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.850rem;
+  background-color: #f9f9f900;
+  cursor: pointer;
+}
+
+.project-manager-file-input-wrapper:hover {
+  border-color: #7163f1;
+  background-color: #f0f0f0;
+}
+
+.project-manager-file-upload {
+  display: none; /* Hide the file input */
+}
+
+.project-manager-file-upload-label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.project-manager-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #888888;
+}
+
+.project-manager-upload-text {
+  flex-grow: 1; /* Ensures the text spans across the available space */
+  text-align: left; /* Aligns text to the left */
+  padding-left: 12%; /* Optional padding to create space between the border and the text */
+  color: #002055;
+  font-weight: 600;
+}
+
+.project-manager-upload-icon {
+  width: 10%;
+  height: auto;
+  padding-right: 10px; /* Padding to push the icon slightly inward */
+}
+
+.project-manager-upload-icon-r {
+  width: 10%;
+  height: auto;
+}
+

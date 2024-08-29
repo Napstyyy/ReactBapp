@@ -60,7 +60,7 @@ const HomeView = () => {
     if (userType === 1) {
       return (
         <>
-          <header>
+          <div className="homeHeader">
             <button className="home-button left">
               <RxDashboard />
             </button>
@@ -68,7 +68,7 @@ const HomeView = () => {
             <button className="home-button right">
               <img src={NotificationIcon} alt="Notification" className="notification-image" />
             </button>
-          </header>
+          </div>
           <div className="Container">
             <h1 className="greeting">
               Let's get started{" "}
@@ -127,15 +127,15 @@ const HomeView = () => {
     } else if (userType === 0) {
       return (
         <>
-          <header>
+          <div className="homeHeader">
             <button className="home-button left">
               <RxDashboard />
             </button>
-            <h2>{new Date().toLocaleDateString("en-MY", { weekday: "long", day: "numeric" })}</h2>
+            <h2 className="HeaderText">{new Date().toLocaleDateString("en-MY", { weekday: "long", day: "numeric" })}</h2>
             <button className="home-button right">
               <img src={NotificationIcon} alt="Notification" className="notification-image" />
             </button>
-          </header>
+          </div>
           <div className="Container">
             <h1 className="greeting">
               Let's get started{" "}

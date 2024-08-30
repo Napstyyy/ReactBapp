@@ -9,6 +9,7 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
   padding: 5%;
   font-family: 'Poppins', sans-serif;
   color: #3a3a3a;
@@ -16,7 +17,6 @@ html, body {
   background-size: contain;
   background-position: center; /* Centra la imagen */
   background-repeat: no-repeat; /* Evita que la imagen se repita */
-  max-height: 100vh; /* Asegura que el contenedor cubra toda la altura de la pantalla */
 }
 
 
@@ -72,10 +72,10 @@ p {
   font-weight: 100;
 }
 
-.role-selector {
+.role-selector-login {
   display: flex;
   width: 100%;
-  margin: 5% 0;
+  margin: 2rem 0;
   position: relative;
   border-radius: 2rem; /* Rounded corners */
   background-color: #f3f3f3; /* Default gray background */

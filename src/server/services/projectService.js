@@ -30,6 +30,8 @@ const getOneProject = (projectId, callback) => {
             project.image1 = project.image1 ? project.image1.toString('base64') : null;
             project.image2 = project.image2 ? project.image2.toString('base64') : null;
             project.image3 = project.image3 ? project.image3.toString('base64') : null;
+            project.pdf1 = project.pdf1 ? project.pdf1.toString() : null;
+            project.pdf2 = project.pdf2 ? project.pdf2.toString() : null;
         }
 
 

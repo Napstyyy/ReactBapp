@@ -3,39 +3,38 @@ import "./styles/Home.css";
 import "./styles/AllProject.css";
 import config from '../../../server/config/config'; // Importa la configuración
 import axios from "axios";
-import mockData from "../../../data/mockData.json";
 import { RxDashboard } from "react-icons/rx";
 import NotificationIcon from "../../../assets/images/Home/notificationIcon.png";
-import { BsArrowRightCircle } from "react-icons/bs";
 import MessageIcon from "../../../assets/images/Home/Message.png";
 import MessageNIcon from "../../../assets/images/Home/MessageN.png";
 import GoImage from "../../../assets/images/Home/GoImage.png";
-import { IoIosArrowForward } from "react-icons/io";
 import CustomBottomNavigation from "../../widgets/CustomBottomNavigation";
 import { useNavigate } from "react-router-dom"; // Importa useNavigate
 import { CiSearch } from "react-icons/ci";
+import { useUser } from '../../context/UserContext';
 
 const AllProjectView = () => {
   const navigate = useNavigate(); // Usa useNavigate para la navegación
   const [activeRole, setActiveRole] = useState('participated');
   const [searchTerm, setSearchTerm] = useState(''); // Estado para el término de búsqueda
+  const { userType, userEmail } = useUser(); // Obtén userType del contexto
   const [projects, setProjects] = useState([]); // Estado para almacenar los proyectos
   // Determinar si algún proyecto tiene mensajes
   const [hasAnyMessage, setHasAnyMessage] = useState(false);
 
   useEffect(() => {
-      // Si el usuario es del tipo 0, obtenemos los proyectos del backend
-      axios.get(`${config.apiUrl}/projects/getProjects`)
-        .then(response => {
-          console.log("Projects fetched successfully!", response.data);
-          setProjects(response.data);
-          // Verifica si alguno de los proyectos tiene mensajes
-          const anyMessage = response.data.some(project => project.HasMessages);
-          setHasAnyMessage(anyMessage);
-        })
-        .catch(error => {
-          console.error("There was an error fetching the projects!", error);
-        });
+    // Si el usuario es del tipo 0, obtenemos los proyectos del backend
+    axios.get(`${config.apiUrl}/projects/getProjects`)
+      .then(response => {
+        console.log("Projects fetched successfully!", response.data);
+        setProjects(response.data);
+        // Verifica si alguno de los proyectos tiene mensajes
+        const anyMessage = response.data.some(project => project.HasMessages);
+        setHasAnyMessage(anyMessage);
+      })
+      .catch(error => {
+        console.error("There was an error fetching the projects!", error);
+      });
   }, []); // La solicitud se hace solo una vez al cargar el componente
 
   // Filtrar los proyectos basados en el término de búsqueda
@@ -52,7 +51,14 @@ const AllProjectView = () => {
   };
 
   const projectInfo = (proyectId) => {
-    navigate("/ProjectPage", { state: { proyectId: proyectId, name: proyectId } });
+    const projectUser = projects.find(project => project.id_project === proyectId)?.id_user;
+    console.log(userEmail);
+    console.log(projectUser);
+    if (projectUser == userEmail)
+      navigate("/ProjectPageManager", { state: { proyectId: proyectId, name: proyectId } });
+    else
+      navigate("/ProjectPage", { state: { proyectId: proyectId, name: proyectId } });
+
   };
 
   const projectChat = (proyectId) => {
@@ -74,25 +80,25 @@ const AllProjectView = () => {
           />
         </button>
       </div>
-      <div className="Container">
-       {/* Barra de búsqueda */}
+      <div className="all-projects-container">
+        {/* Barra de búsqueda */}
         <div className="search-bar">
-  <CiSearch />
-  <input
-    type="text"
-    placeholder="Search ..."
-    value={searchTerm}
-    onChange={(e) => setSearchTerm(e.target.value)}
-  />
-  <div className="go-image-container">
-    <img
-      src={GoImage}
-      alt="Go"
-      className="go-image"
-    />
-    <span className="go-text">GO</span>
-  </div>
-</div>
+          <CiSearch />
+          <input
+            type="text"
+            placeholder="Search ..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <div className="go-image-container">
+            <img
+              src={GoImage}
+              alt="Go"
+              className="go-image"
+            />
+            <span className="go-text">GO</span>
+          </div>
+        </div>
 
 
         <div className="project-selector">
@@ -116,7 +122,7 @@ const AllProjectView = () => {
             <div className="project-card" key={index}>
               <p>{project.quotations} quotation(s) uploaded</p>
               <h3 onClick={() => projectInfo(project.id_project)}>{project.name}</h3>
-              <p>Average price @ {project.averagePrice}</p>
+              <p>{project.description.length > 40 ? `${project.description.substring(0, 40)}...` : project.description}</p>
               {project.HasMessages ? (
                 <img src={MessageNIcon} alt="Message Notification" onClick={() => projectChat(project.id_project)} />
               ) : (

@@ -36,7 +36,7 @@ const CustomBottomNavigation = ({ hasAnyMessage }) => {
             <HiOutlinePlus className="icon" />
           </div>
         }
-        onClick={() => handleNavigation("/newProject")}  // Ejemplo de otra ruta
+        onClick={() => handleNavigation("/addProject")}  // Ejemplo de otra ruta
       />
       <BottomNavigationAction 
         className="button" 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
 import "./styles/Chat.css";
 import axios from "axios";
 import config from '../../../server/config/config'; // Asegúrate de que la ruta es correcta
@@ -11,6 +12,7 @@ import SendMessageIcon from "../../../assets/images/Chat/SendMessageIcon.png";
 import { useUser } from '../../context/UserContext'; // Importa el contexto
 
 const ChatView = () => {
+  const navigate = useNavigate();
   const [chats, setChats] = useState([]); // Estado para almacenar los mensajes
   const { userType, userEmail } = useUser(); // Obtén userType del contexto
   const location = useLocation();
@@ -86,10 +88,14 @@ const ChatView = () => {
     }
   };
 
+  const handleNavigate = () => {
+    navigate(-1);
+  }
+
   return (
     <div className="chat-container">
       <div className="homeHeader">
-        <button className="home-button left">
+        <button className="home-button left" onClick={() => handleNavigate()}>
           <RxDashboard />
         </button>
         <h2>Chat</h2>
@@ -115,9 +121,8 @@ const ChatView = () => {
           return (
             <div
               key={message.id_message}
-              className={`message-container ${
-                isUser ? "user-message" : "hashim-message"
-              }`}
+              className={`message-container ${isUser ? "user-message" : "hashim-message"
+                }`}
             >
               <div className="message-time">
                 {new Date(message.id_message).toLocaleTimeString()}
@@ -126,9 +131,8 @@ const ChatView = () => {
                 <img src={message.message_file} alt="Chat" className="message-image" />
               ) : (
                 <div
-                  className={`message-bubble ${
-                    isUser ? "user-bubble" : "hashim-bubble"
-                  }`}
+                  className={`message-bubble ${isUser ? "user-bubble" : "hashim-bubble"
+                    }`}
                 >
                   {messageText}
                 </div>

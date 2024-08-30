@@ -29,6 +29,7 @@ const AddProjectView = () => {
   const handleSaveClick = async () => {
 
     const toBase64 = (blob) => {
+      console.log(blob);
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(blob);

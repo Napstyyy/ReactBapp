@@ -214,7 +214,18 @@
 }
 
 .project-manager-file-upload {
-  display: none; /* Hide the file input */
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+.project-manager-file-upload:hover {
+    background: none;
+    border: none;
 }
 
 .project-manager-file-upload-label {

@@ -62,7 +62,7 @@ const SignInView = () => {
       </header>
       <h1 className="Welcome-back">Welcome Back</h1>
       <p>Please enter your email address and password for login</p>
-      <div className="role-selector">
+      <div className="role-selector-login">
         <button
           className={`role-button ${activeRole === 'manager' ? 'active' : ''}`}
           onClick={() => setActiveRole('manager')}

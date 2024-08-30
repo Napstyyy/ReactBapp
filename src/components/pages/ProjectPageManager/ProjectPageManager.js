@@ -4,7 +4,6 @@ import { Container } from '@mui/material';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './styles/ProjectPageManager.css';
-import ProjectView from "../../../assets/images/Projects/ProjectView.png";
 import Edit from "../../../assets/images/Projects/Edit.svg";
 import DashboardChart from "../../widgets/DashboardChart";
 import pdflogo from "../../../assets/images/Projects/pdflogo.png";
@@ -25,11 +24,30 @@ const ProjectPageManager = () => {
   const [quotes, setQuotes] = useState([]);
   const [project, setProject] = useState([]);
   const location = useLocation();
-  // const { projectId, name } = location.state;
-  const nameProjectId = /*name || projectId*/ 1;
+  const { projectId, name } = location.state;
+  const nameProjectId = name || projectId;
 
   const goToComparison = () => {
-    navigate("/Comparison", { state: { proyectId: 1, name: 1 } });
+    navigate("/Comparison", { state: { nameProyectId: nameProjectId, name: nameProjectId } });
+  }
+
+  const openPdf = (blob64) => {
+    const binaryString = window.atob(blob64);
+    const len = binaryString.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+
+    const blob = new Blob([bytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    const pdfWindow = window.open("");
+    pdfWindow.document.write(
+      `<iframe width="100%" height="100%" src="${url}"></iframe>`
+    );
+    setTimeout(() => {
+      URL.revokeObjectURL(url);
+    }, 60000); // 1 minute 
   }
 
   useEffect(() => {
@@ -53,13 +71,13 @@ const ProjectPageManager = () => {
       <div className="project-manager-imageContainer">
         <Slider {...settings}>
           <div>
-            <img src={ProjectView} alt="Project 1" className="project-manager-image" />
+            <img src={`data:image/jpeg;base64,${project.image1}`} alt="Project 1" className="imageContainer" />
           </div>
           <div>
-            <img src="/path-to-image2.jpg" alt="Project 2" className="project-manager-image" />
+            <img src={`data:image/jpeg;base64,${project.image2}`} alt="Project 2" className="imageContainer" />
           </div>
           <div>
-            <img src="/path-to-image3.jpg" alt="Project 3" className="project-manager-image" />
+            <img src={`data:image/jpeg;base64,${project.image3}`} alt="Project 3" className="imageContainer" />
           </div>
         </Slider>
         <Container maxWidth="sm" className="project-manager-container">
@@ -72,44 +90,41 @@ const ProjectPageManager = () => {
                 <img src={Edit} alt="Message" />
               </div>
 
-              <DashboardChart quotes={quotes}/>
+              <DashboardChart quotes={quotes} />
               <div className="project-manager-descriptionTitle">
                 Descriptions
               </div>
               <div className="project-manager-description">
-                We require the repainting of two residential building blocks, each comprising 100 units. The buildings are located in [Location]. This project aims to enhance the aesthetic appeal and protect the structural integrity of the buildings.
-                Scope of Work
-
-                Surface Preparation:
-                Cleaning of all surfaces to be painted, including removal of dirt, mildew, and any loose or flaking paint.
-                Repair of any surface imperfections, such as cracks or holes, to ensure a smooth painting surface. ..
+                {project.description}
               </div>
               <div className="project-manager-documentsTitle">
                 Documents
               </div>
               <div className="project-manager-file-input-wrapper">
-                <input
-                  type="file"
+                <button
                   className="project-manager-file-upload"
-                  id="financial-statements"
-                  accept="application/pdf"
-                />
-                <label htmlFor="financial-statements" className="project-manager-file-upload-label">
-                  <img src={pdflogo} alt="Upload File" className="project-manager-upload-icon" />
-                  <span className="project-manager-upload-text">Requirement_01</span>
-                </label>
+                  onClick={() => {
+                    openPdf(project.pdf1);
+                  }}
+                >
+                  <label htmlFor="financial-statements" className="project-manager-file-upload-label">
+                    <img src={pdflogo} alt="Upload File" className="project-manager-upload-icon" />
+                    <span className="project-manager-upload-text">Pdf 1</span>
+                  </label>
+                </button>
               </div>
               <div className="project-manager-file-input-wrapper">
-                <input
-                  type="file"
+                <button
                   className="project-manager-file-upload"
-                  id="financial-statements"
-                  accept="application/pdf"
-                />
-                <label htmlFor="financial-statements" className="project-manager-file-upload-label">
-                  <img src={pdflogo} alt="Upload File" className="project-manager-upload-icon" />
-                  <span className="project-manager-upload-text">Floor Plan</span>
-                </label>
+                  onClick={() => {
+                    openPdf(project.pdf2);
+                  }}
+                >
+                  <label htmlFor="financial-statements" className="project-manager-file-upload-label">
+                    <img src={pdflogo} alt="Upload File" className="project-manager-upload-icon" />
+                    <span className="project-manager-upload-text">Pdf 2</span>
+                  </label>
+                </button>
               </div>
 
             </div>
@@ -118,7 +133,7 @@ const ProjectPageManager = () => {
             </button>
           </div>
         </Container>
-      </div>
+      </div >
     </>
   );
 }

@@ -59,18 +59,30 @@ const ProfileView = () => {
   }, [userEmail]);
 
   const handleSaveClick = async () => {
+    const toBase64 = (blob) => {
+      console.log(blob);
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(blob);
+        reader.onload = () => resolve(reader.result.split(",")[1]); // Quita el encabezado del data URL
+        reader.onerror = (error) => reject(error);
+      });
+    };
+
     if (!email.trim()) {
       console.error("El campo de email no puede estar vacío.");
       return;
     }
 
+    console.log(companyProfiles)
+    console.log(financialStatements)
     const updatedData = {
       name: name || email,
       phone_number: phoneNumber || "phone_number",
       address: address || "address",
       website: website || "website",
-      company_profiles: companyProfiles || "company profiles",
-      financial_statements: financialStatements || "financial statements",
+      company_profiles: companyProfiles.type === "application/pdf" ? await toBase64(companyProfiles) : null,
+      financial_statements: financialStatements.type === "application/pdf" ? await toBase64(financialStatements) : null,
     };
 
     console.log("Datos que se envían en el PATCH:", updatedData);
@@ -112,7 +124,7 @@ const ProfileView = () => {
     const file = e.target.files[0];
     if (file && file.type === "application/pdf") {
       setFile(file);
-      setFileName(file.name); // Actualiza el nombre del archivo
+      setFileName(file.name); // Update file name
     } else {
       console.error("Please select a valid PDF file.");
     }

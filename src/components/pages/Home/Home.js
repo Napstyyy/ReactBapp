@@ -36,6 +36,18 @@ const HomeView = () => {
         .catch(error => {
           console.error("There was an error fetching the projects!", error);
         });
+    } else {
+      axios.get(`${config.apiUrl}/projects/getProjects`)
+        .then(response => {
+          console.log("Projects fetched successfully!", response.data);
+          setProjects(response.data);
+          // Verifica si alguno de los proyectos tiene mensajes
+          const anyMessage = response.data.some(project => project.HasMessages);
+          setHasAnyMessage(anyMessage);
+        })
+        .catch(error => {
+          console.error("There was an error fetching the projects!", error);
+        });
     }
   }, [userType, userEmail]); // La solicitud se vuelve a hacer si userType o email cambian
 
@@ -52,7 +64,7 @@ const HomeView = () => {
     navigate("/Chat", { state: { proyectId: proyectId, name: proyectId } });
   };
 
-   const renderContent = () => {
+  const renderContent = () => {
     /*if (loading) {
       return <p>Loading...</p>;
     }*/
@@ -107,15 +119,14 @@ const HomeView = () => {
                 All Projects
                 <IoIosArrowForward className="all-projects-icon" onClick={handleViewAllProjects} />
               </h2>
-              {projects.slice(0, 3).map((project, index) => (
-                <div className="project-card" key={index}>
-                  <p>{project.quotations} quotation(s) uploaded</p>
-                  <h3>{project.name}</h3>
-                  <p>Average price @ {project.averagePrice}</p>
+              {limitedProjects.map((project, index) => (
+                <div className="project-card" key={index} >
+                  <h3 onClick={() => projectInfo(project.id_project)}>{project.name}</h3>
+                  <p>{project.description.length > 40 ? `${project.description.substring(0, 40)}...` : project.description}</p>
                   {project.HasMessages ? (
-                    <img src={MessageNIcon} alt="Message Notification" />
+                    <img src={MessageNIcon} alt="Message Notification" onClick={() => projectChat(project.id_project)} />
                   ) : (
-                    <img src={MessageIcon} alt="Message" />
+                    <img src={MessageIcon} alt="Message" onClick={() => projectChat(project.id_project)} />
                   )}
                 </div>
               ))}
@@ -177,7 +188,7 @@ const HomeView = () => {
               {limitedProjects.map((project, index) => (
                 <div className="project-card" key={index} >
                   <h3 onClick={() => projectInfo(project.id_project)}>{project.project_name}</h3>
-                  <p>Average price @ {project.payment_terms}</p>
+                  <p>{project.description.length > 40 ? `${project.description.substring(0, 40)}...` : project.description}</p>
                   {project.HasMessages ? (
                     <img src={MessageNIcon} alt="Message Notification" onClick={() => projectChat(project.id_project)} />
                   ) : (

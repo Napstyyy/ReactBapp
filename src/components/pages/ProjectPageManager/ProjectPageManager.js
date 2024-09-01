@@ -31,6 +31,10 @@ const ProjectPageManager = () => {
     navigate("/Comparison", { state: { nameProyectId: nameProjectId, name: nameProjectId } });
   }
 
+  const goToEdit = () => {
+    navigate("/EditProject", { state: { nameProyectId: nameProjectId, name: nameProjectId } });
+  }
+
   const openPdf = (blob64) => {
     const binaryString = window.atob(blob64);
     const len = binaryString.length;
@@ -87,7 +91,9 @@ const ProjectPageManager = () => {
                 <div className="project-manager-title">
                   {project.name}
                 </div>
-                <img src={Edit} alt="Message" />
+                <button className="edit-project-button" onClick={goToEdit}>
+                  <img src={Edit} alt="Message" />
+                </button>
               </div>
 
               <DashboardChart quotes={quotes} />

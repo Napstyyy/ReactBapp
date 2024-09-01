@@ -9,9 +9,19 @@ const getAllProjects = (callback) => {
             console.error('Error executing query:', err.stack);
             return callback(err, null);
         }
+
+        if (results.length > 0) {
+            const project = results[0];
+            project.image1 = project.image1 ? project.image1.toString('base64') : null;
+            project.image2 = project.image2 ? project.image2.toString('base64') : null;
+            project.image3 = project.image3 ? project.image3.toString('base64') : null;
+            project.pdf1 = project.pdf1 ? project.pdf1.toString() : null;
+            project.pdf2 = project.pdf2 ? project.pdf2.toString() : null;
+        }
         console.log('list of Projects:', results)
         callback(null, results);
     });
+
 };
 
 const getOneProject = (projectId, callback) => {
@@ -26,12 +36,13 @@ const getOneProject = (projectId, callback) => {
 
         // Convertir las imágenes a base64
         if (results.length > 0) {
-            const project = results[0];
-            project.image1 = project.image1 ? project.image1.toString('base64') : null;
-            project.image2 = project.image2 ? project.image2.toString('base64') : null;
-            project.image3 = project.image3 ? project.image3.toString('base64') : null;
-            project.pdf1 = project.pdf1 ? project.pdf1.toString() : null;
-            project.pdf2 = project.pdf2 ? project.pdf2.toString() : null;
+            results.forEach((project) => {
+                project.image1 = project.image1 ? project.image1.toString('base64') : null;
+                project.image2 = project.image2 ? project.image2.toString('base64') : null;
+                project.image3 = project.image3 ? project.image3.toString('base64') : null;
+                project.pdf1 = project.pdf1 ? project.pdf1.toString() : null;
+                project.pdf2 = project.pdf2 ? project.pdf2.toString() : null;
+            });
         }
 
 
@@ -111,7 +122,7 @@ const getMessagesByProject = (projectId, callback) => {
         WHERE 
             id_project = ?
     `;
-    
+
     connection.query(query, [projectId], (err, results) => {
         if (err) {
             console.error('Error executing query:', err.stack);
@@ -127,7 +138,7 @@ const addMessageToProject = (projectId, text, messageFile, callback) => {
         INSERT INTO messages (id_project, text, message_file)
         VALUES (?, ?, ?)
     `;
-    
+
     connection.query(query, [projectId, text, messageFile], (err, results) => {
         if (err) {
             console.error('Error executing query:', err.stack);
@@ -143,7 +154,7 @@ const addQuote = (idUser, idProject, paymentTerms, warranty, note, price, callba
         INSERT INTO quotes (id_user, id_project, payment_terms, warranty, note, price)
         VALUES (?, ?, ?, ?, ?, ?)
     `;
-    
+
     connection.query(query, [idUser, idProject, paymentTerms, warranty, note, price], (err, results) => {
         if (err) {
             console.error('Error executing query:', err.stack);
@@ -159,7 +170,7 @@ const addProject = (name, description, idUser, image1, image2, image3, pdf1, pdf
         INSERT INTO projects (name, description, id_user, image1, image2, image3, pdf1, pdf2)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `;
-    
+
     connection.query(query, [name, description, idUser, image1, image2, image3, pdf1, pdf2], (err, results) => {
         if (err) {
             console.error('Error executing query:', err.stack);
@@ -171,16 +182,16 @@ const addProject = (name, description, idUser, image1, image2, image3, pdf1, pdf
 };
 
 const getProjectById = (id_project) => {
-  return new Promise((resolve, reject) => {
-    const query = 'SELECT * FROM projects WHERE id_project = ?';
+    return new Promise((resolve, reject) => {
+        const query = 'SELECT * FROM projects WHERE id_project = ?';
 
-    connection.query(query, [id_project], (error, results) => {
-      if (error) {
-        return reject(error);
-      }
-      resolve(results); // Los resultados se devuelven en formato JSON automáticamente
+        connection.query(query, [id_project], (error, results) => {
+            if (error) {
+                return reject(error);
+            }
+            resolve(results); // Los resultados se devuelven en formato JSON automáticamente
+        });
     });
-  });
 };
 
 

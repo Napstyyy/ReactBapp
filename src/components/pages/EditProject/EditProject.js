@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../Auth/styles/SignUp.css";
 import { SlArrowLeft } from "react-icons/sl";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,8 @@ import uploadFile from "../../../assets/images/Projects/uploadFile.png";
 import trashIcon from "../../../assets/images/trashIcon.png";
 import pdfIcon from "../../../assets/images/pdfIcon.png";
 import cameraIcon from "../../../assets/images/cameraIcon.png";
+import { useLocation } from 'react-router-dom';
+import axios from "axios";
 
 const AddProjectView = () => {
   const navigate = useNavigate();
@@ -25,8 +27,21 @@ const AddProjectView = () => {
   const [imagePreview3, setImagePreview3] = useState(null);
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
+  const [project, setProject] = useState({});
+  const location = useLocation();
+  const { projectId, name } = location.state;
+  const nameProjectId = name || projectId;
 
-  
+  useEffect(() => {
+    console.log(nameProjectId);
+    axios.get(`${config.apiUrl}/projects/getOneProject/${nameProjectId}`).then(response => {
+      setProject(response.data[0]);
+      setDescription(response.data[0].description);
+      setTaskName(response.data[0].name);
+    }).catch(error => {
+      console.error('Error fetching project!', error);
+    });
+  }, []);
 
   const handleSaveClick = async () => {
 
@@ -308,9 +323,9 @@ const AddProjectView = () => {
         </div>
       </div>
 
-        <button className="sign-in-button-ap" onClick={handleSaveClick}>
-          Save
-        </button>
+      <button className="sign-in-button-ap" onClick={handleSaveClick}>
+        Save
+      </button>
     </div>
   );
 };

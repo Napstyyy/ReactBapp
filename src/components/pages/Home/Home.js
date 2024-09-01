@@ -64,6 +64,16 @@ const HomeView = () => {
     navigate("/Chat", { state: { proyectId: proyectId, name: proyectId } });
   };
 
+  const renderProjects = () => {
+    if (projects.length <= 3) {
+      return projects;
+    }
+
+    const shuffledProjects = [...projects].sort(() => 0.5 - Math.random());
+    console.log(shuffledProjects)
+    return shuffledProjects.slice(0, 3);
+  };
+
   const renderContent = () => {
     /*if (loading) {
       return <p>Loading...</p>;
@@ -93,11 +103,11 @@ const HomeView = () => {
                   <p>3 Pending projects</p>
                   <div className="project-details">
                     <div className="project-images">
-                      <img src="https://via.placeholder.com/50" alt="Project 1" className="project-image" />
-                      <img src="https://via.placeholder.com/50" alt="Project 2" className="project-image" />
-                      <img src="https://via.placeholder.com/50" alt="Project 3" className="project-image" />
+                      {renderProjects().map((project, index) => (
+                        <img key={index} src={`data:image/jpeg;base64,${project.image1}`} alt = "Project 1" className = "project-image" />
+                      ))}
                     </div>
-                    <button className="view-projects">View All Projects</button>
+                    <button onClick={handleViewAllProjects} className="view-projects">View All Projects</button>
                   </div>
                 </div>
                 <div className="participated-project participated-project-1">

@@ -37,6 +37,16 @@
 	align-items: center;
 }
 
+.edit-project-button {
+	background: none;
+	border: none;
+	color: inherit;
+	text-align: inherit;
+	text-decoration: none;
+	outline: none;
+	box-shadow: none;
+}
+
 .project-manager-content {
 	padding: 15px;
 }
@@ -196,71 +206,76 @@
 
 
 .project-manager-file-input-wrapper {
-  display: flex;
-  align-items: center; /* Aligns items vertically centered */
-  justify-content: space-between; /* Pushes the span and icon to opposite ends */
-  width: 90%;
-  margin: 20px auto;
-  padding: 10px;
-  border: 1px solid #e0e0e0;
-  border-radius: 0.850rem;
-  background-color: #f9f9f900;
-  cursor: pointer;
+	display: flex;
+	align-items: center;
+	/* Aligns items vertically centered */
+	justify-content: space-between;
+	/* Pushes the span and icon to opposite ends */
+	width: 90%;
+	margin: 20px auto;
+	padding: 10px;
+	border: 1px solid #e0e0e0;
+	border-radius: 0.850rem;
+	background-color: #f9f9f900;
+	cursor: pointer;
 }
 
 .project-manager-file-input-wrapper:hover {
-  border-color: #7163f1;
-  background-color: #f0f0f0;
+	border-color: #7163f1;
+	background-color: #f0f0f0;
 }
 
 .project-manager-file-upload {
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-    color: inherit;
-    font: inherit;
-    cursor: pointer;
+	background: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+	color: inherit;
+	font: inherit;
+	cursor: pointer;
 }
 
 .project-manager-file-upload:hover {
-    background: none;
-    border: none;
+	background: none;
+	border: none;
 }
 
 .project-manager-file-upload-label {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.875rem;
-  color: #333;
-  cursor: pointer;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	font-family: 'Poppins', sans-serif;
+	font-size: 0.875rem;
+	color: #333;
+	cursor: pointer;
 }
 
 .project-manager-label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: #888888;
+	display: block;
+	margin-bottom: 8px;
+	font-size: 14px;
+	color: #888888;
 }
 
 .project-manager-upload-text {
-  flex-grow: 1; /* Ensures the text spans across the available space */
-  text-align: left; /* Aligns text to the left */
-  padding-left: 12%; /* Optional padding to create space between the border and the text */
-  color: #002055;
-  font-weight: 600;
+	flex-grow: 1;
+	/* Ensures the text spans across the available space */
+	text-align: left;
+	/* Aligns text to the left */
+	padding-left: 12%;
+	/* Optional padding to create space between the border and the text */
+	color: #002055;
+	font-weight: 600;
 }
 
 .project-manager-upload-icon {
-  width: 10%;
-  height: auto;
-  padding-right: 10px; /* Padding to push the icon slightly inward */
+	width: 10%;
+	height: auto;
+	padding-right: 10px;
+	/* Padding to push the icon slightly inward */
 }
 
 .project-manager-upload-icon-r {
-  width: 10%;
-  height: auto;
+	width: 10%;
+	height: auto;
 }
-

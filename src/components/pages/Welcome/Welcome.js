@@ -1,7 +1,7 @@
 // WelcomeView.js
 import React from "react";
 import "./styles/Welcome.css";
-import welcomeImage from "../../../assets/images/BLogo.png";
+import welcomeImage from "../../../assets/images/Opentender-Logo-HD.png";
 import phaseImage from "../../../assets/images/Welcome/Phase1.png";
 import { useNavigate } from "react-router-dom";
 

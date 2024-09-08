@@ -58,91 +58,123 @@ const ComparisonView = () => {
   const { projectId, name } = location.state;
   const nameProjectId = name || projectId;
   const apiKey = process.env.REACT_APP_OPENAI_API_KEY; // Access API key from .env
+  let isGeneratingPdf = false;
 
-  const generatePDF = async (projectData, quotesList) => {
-    const doc = new jsPDF();
+  function wrapText(text, maxLength) {
+    let wrappedText = '';
+    let currentLineLength = 0;
 
-    // Add project info
-    const project = {
-      name: projectData.name,
-      description: projectData.description
-    };
+    // Split the text into words
+    const words = text.split(' ');
 
-    doc.setFontSize(16);
-    doc.text('Project Information', 10, 10);
-    doc.setFontSize(12);
-    doc.text(`Project Name: ${project.name}`, 10, 20);
-    doc.text(`Project Description: ${project.description}`, 10, 30);
-
-    const tableData = quotesList.map((quote, index) => [index + 1, quote.name, quote.payment_terms, quote.warranty, quote.price]);
-
-    doc.setFontSize(16);
-    doc.text('Quotes Table', 10, 50);
-
-    autoTable(doc, {
-      startY: 60,
-      head: [['#', 'Name', 'PaymentTerms', 'Warranty', 'Price']],
-      body: tableData,
-      theme: 'striped',
-      headStyles: { fillColor: [22, 160, 133] },
-      margin: { top: 10 },
-      didDrawPage: (data) => {
-        doc.setFontSize(16);
-        doc.text('AI Summary', 10, data.cursor.y + 20);
-        doc.setFontSize(12);
-        doc.text('The best quote is ...', 10, data.cursor.y + 30);
+    words.forEach((word) => {
+      // If adding the next word exceeds maxLength, add a newline
+      if (currentLineLength + word.length + 1 > maxLength) {
+        wrappedText += '\n';
+        currentLineLength = 0;
       }
+
+      // Add the word to the wrapped text
+      wrappedText += (currentLineLength > 0 ? ' ' : '') + word;
+      currentLineLength += word.length + 1; // Update line length, including space
     });
 
-    // Add the image to the bottom right corner
-    const img = new Image();
-    img.src = pdfImage;
-    img.onload = () => {
-      const imgWidth = 50; // Image width in mm
-      const imgHeight = 50; // Image height in mm
-      const pdfWidth = doc.internal.pageSize.getWidth();
-      const pdfHeight = doc.internal.pageSize.getHeight();
+    return wrappedText;
+  }
 
-      // Draw the image
-      doc.addImage(img, 'PNG', pdfWidth - imgWidth - 10, pdfHeight - imgHeight - 10, imgWidth, imgHeight);
+  const generatePDF = async (projectData, quotesList) => {
+    console.log("generando");
+    if (isGeneratingPdf)
+      return;
 
-      // Convert PDF to Blob
-      const pdfBlob = doc.output('blob');
+    isGeneratingPdf = true;
+    const doc = new jsPDF();
+    fetchOpenAI(project, quotes)
+      .then(response => {
+        console.log(response.data.choices[0].message.content);
+        const aiResponse = wrapText(response.data.choices[0].message.content, 100);
+        const project = {
+          name: projectData.name,
+          description: projectData.description
+        };
 
-      // Create a URL for the Blob
-      const pdfUrl = URL.createObjectURL(pdfBlob);
+        doc.setFontSize(16);
+        doc.text('Project Information', 10, 10);
+        doc.setFontSize(12);
+        doc.text(`Project Name: ${project.name}`, 10, 20);
+        doc.text(`Project Description: ${project.description}`, 10, 30);
 
-      // Open the PDF in a new tab
-      window.open(pdfUrl, '_blank');
-    };
+        const tableData = quotesList.map((quote, index) => [index + 1, quote.name, quote.payment_terms, quote.warranty, quote.price]);
+
+        doc.setFontSize(16);
+        doc.text('Quotes Table', 10, 50);
+
+        autoTable(doc, {
+          startY: 60,
+          head: [['#', 'Name', 'PaymentTerms', 'Warranty', 'Price']],
+          body: tableData,
+          theme: 'striped',
+          headStyles: { fillColor: [22, 160, 133] },
+          margin: { top: 10 },
+          didDrawPage: (data) => {
+            doc.setFontSize(16);
+            doc.text('AI Summary', 10, data.cursor.y + 20);
+            doc.setFontSize(12);
+            doc.text(aiResponse, 10, data.cursor.y + 30);
+          }
+        });
+
+        // Add the image to the bottom right corner
+        const img = new Image();
+        img.src = pdfImage;
+        img.onload = () => {
+          const imgWidth = 50; // Image width in mm
+          const imgHeight = 50; // Image height in mm
+          const pdfWidth = doc.internal.pageSize.getWidth();
+          const pdfHeight = doc.internal.pageSize.getHeight();
+
+          // Draw the image
+          doc.addImage(img, 'PNG', pdfWidth - imgWidth - 10, pdfHeight - imgHeight - 10, imgWidth, imgHeight);
+
+          // Convert PDF to Blob
+          const pdfBlob = doc.output('blob');
+
+          // Create a URL for the Blob
+          const pdfUrl = URL.createObjectURL(pdfBlob);
+
+          // Open the PDF in a new tab
+          window.open(pdfUrl, '_blank');
+        };
+      })
+      .catch(error => {
+        console.error("Error making API request to OpenAI:", error);
+      });
+
+    // Add project info
+
+    isGeneratingPdf = false;
   };
 
 
-  const debouncedFetchOpenAI = useCallback(_.debounce(async (project, quotes) => {
-    try {
-      const response = await axios.post(
-        "https://api.openai.com/v1/chat/completions",
-        {
-          model: "gpt-4", // Use the correct model name
-          messages: [
-            { role: "system", content: "You are an assistant for a project." },
-            { role: "user", content: `ProjectName: ${project.name}\nDescription: ${project.description}\nQuotes: ${JSON.stringify(quotes)}\nWhich one is the best quote?` }
-          ],
-          max_tokens: 100,
+  const fetchOpenAI = (project, quotes) => {
+    return axios.post(
+      "https://api.openai.com/v1/chat/completions",
+      {
+        model: "gpt-3.5-turbo", // Use the correct model name
+        messages: [
+          { role: "system", content: "You are an assistant for a project." },
+          { role: "user", content: `ProjectName: ${project.name}\nDescription: ${project.description}\nQuotes: ${JSON.stringify(quotes)}\nWhich one is the best quote? Argument using other quotes` }
+        ],
+        max_tokens: 100,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`, // Use the API key from .env
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`, // Use the API key from .env
-          },
-        }
-      );
-
-      console.log(response.data); // Process the result here
-    } catch (error) {
-      console.error("Error making API request to OpenAI:", error);
-    }
-  }, 500), [apiKey]); // Debounce delay of 500ms
+      }
+    );
+  };
 
   useEffect(() => {
     // Wrap everything in an async function to handle the async logic
@@ -168,7 +200,6 @@ const ComparisonView = () => {
       }
 
       if (!validData) return;
-      // debouncedFetchOpenAI(projectLocal, quotesLocal);
       console.log(quotesLocal);
       console.log(projectLocal)
     };

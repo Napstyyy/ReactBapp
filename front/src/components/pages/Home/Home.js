@@ -20,7 +20,7 @@ const HomeView = () => {
   const [hasAnyMessage, setHasAnyMessage] = useState(false); // Estado para verificar si hay mensajes
   //const hasAnyMessage = mockData.projects.some((project) => project.HasMessages);
   const limitedProjects = projects.slice(0, 3);
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = process.env.REACT_APP_BACKEND_API_URL;
 
   useEffect(() => {
     if (userType === 0) {

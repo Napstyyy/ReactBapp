@@ -20,7 +20,7 @@ const AllProjectView = () => {
   const [projects, setProjects] = useState([]); // Estado para almacenar los proyectos
   // Determinar si algún proyecto tiene mensajes
   const [hasAnyMessage, setHasAnyMessage] = useState(false);
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = process.env.REACT_APP_BACKEND_API_URL;
 
   useEffect(() => {
     // Si el usuario es del tipo 0, obtenemos los proyectos del backend

@@ -19,7 +19,7 @@ const ChatView = () => {
   const nameProjectId = name || projectId; // Usa projectId si name no está disponible
   const [newMessage, setNewMessage] = useState(""); // Estado para el nuevo mensaje
   const messagesEndRef = useRef(null); // Ref para el scroll automático
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = process.env.REACT_APP_BACKEND_API_URL;
 
   useEffect(() => {
     // Función para obtener los mensajes

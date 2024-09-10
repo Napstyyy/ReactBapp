@@ -10,7 +10,7 @@ const SignUpView = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = process.env.REACT_APP_BACKEND_API_URL;
 
   const handleButtonClick = async () => {
     try {

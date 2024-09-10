@@ -24,7 +24,7 @@ const AddProjectView = () => {
   const [imagePreview3, setImagePreview3] = useState(null);
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
-  const apiUrl = process.env.REACT_APP_API_URL; 
+  const apiUrl = process.env.REACT_APP_BACKEND_API_URL; 
 
   const handleSaveClick = async () => {
 

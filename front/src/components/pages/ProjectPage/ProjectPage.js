@@ -17,7 +17,7 @@ const ProjectDetail = () => {
   const { projectId, name } = location.state; // Obtiene el projectId de la ubicación
   const nameProjectId = name || projectId; // Usa projectId si name no está disponible
   const [project, setProjects] = useState([]); // Estado para almacenar los proyectos
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = process.env.REACT_APP_BACKEND_API_URL;
 
   useEffect(() => {
     // Si el usuario es del tipo 0, obtenemos los proyectos del backend

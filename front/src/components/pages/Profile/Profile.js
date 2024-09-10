@@ -21,7 +21,7 @@ const ProfileView = () => {
   const [companyProfilesName, setCompanyProfilesName] = useState("");
   const [financialStatementsName, setFinancialStatementsName] = useState("");
   const [isEditable, setIsEditable] = useState(false);
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = process.env.REACT_APP_BACKEND_API_URL;
 
   useEffect(() => {
     const fetchUserData = async () => {

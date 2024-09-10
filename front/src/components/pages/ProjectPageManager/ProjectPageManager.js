@@ -25,7 +25,7 @@ const ProjectPageManager = () => {
   const location = useLocation();
   const { projectId, name } = location.state;
   const nameProjectId = name || projectId;
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = process.env.REACT_APP_BACKEND_API_URL;
 
   const goToComparison = () => {
     navigate("/Comparison", { state: { nameProyectId: nameProjectId, name: nameProjectId } });

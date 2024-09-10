@@ -17,7 +17,7 @@ const QuotationGenerator = () => {
   const [paymentTerms, setPaymentTerms] = useState('');
   const [warranty, setWarranty] = useState('');
   const [note, setNote] = useState('');
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = process.env.REACT_APP_BACKEND_API_URL;
 
   const goHome = () => {
     navigate("/Home");

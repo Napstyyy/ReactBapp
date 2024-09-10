@@ -57,7 +57,7 @@ const ComparisonView = () => {
   const { projectId, name } = location.state;
   const nameProjectId = name || projectId;
   const apiKey = process.env.REACT_APP_OPENAI_API_KEY; // Access API key from .env
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = process.env.REACT_APP_BACKEND_API_URL;
   let isGeneratingPdf = false;
 
   function wrapText(text, maxLength) {
